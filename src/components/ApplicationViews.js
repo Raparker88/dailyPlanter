@@ -4,6 +4,7 @@ import { CropProvider } from "./crops/CropProvider"
 import { CropList } from "./crops/CropList"
 import { CropForm } from "./crops/CropForm"
 import { CropDetails } from "./crops/CropDetail"
+import { CropSearch } from "./crops/CropSearch"
 
 export const ApplicationViews = (props) => {
     return (
@@ -16,7 +17,10 @@ export const ApplicationViews = (props) => {
                 </Route>
             <CropProvider>
                 <Route exact path="/crops" render={
-                    props => <CropList {...props}/>
+                    props => <>
+                        <CropSearch/>
+                        <CropList {...props}/>
+                    </>
                 }/>
                 <Route path="/crops/create" render={
                     props => <CropForm {...props}/>
