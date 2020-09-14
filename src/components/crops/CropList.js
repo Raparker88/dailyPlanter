@@ -19,9 +19,11 @@ export const CropList = (props) => {
     return (
         <>
             <h2>Crops</h2>
-            <button onClick={() => props.history.push("/crops/create")}>
-                Add a new crop
-            </button>
+            <div className="buttonContainer">
+                <button onClick={() => props.history.push("/crops/create")}>
+                    Add a new crop
+                </button>
+            </div>
             <div className="cropList">
                 {
                     usersCrops.map(crop => {
