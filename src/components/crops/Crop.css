@@ -1,0 +1,39 @@
+.cropList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cropContainer {
+    flex-basis: 20%;
+    padding: 3.5rem;
+    margin: 10px;
+    max-width: 10em;
+    background-color: #F0EFE4;
+    text-align: center;
+    border-radius: 10px;
+}
+.cropContainer:hover {
+    cursor: pointer;
+    background-color: rgb(147, 177, 147);
+}
+
+h2 {
+    text-align: center;
+}
+
+.buttonContainer {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.cropDetails {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.detail {
+    flex-basis: 25%;
+    margin: 2em;
+}
