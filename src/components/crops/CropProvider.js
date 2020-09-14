@@ -40,10 +40,14 @@ export const CropProvider = (props) => {
         })
             .then(getCrops)
     }
+    const getCropById = (id) => {
+        return fetch(`http://localhost:8088/crops/${ id }`)
+            .then(res => res.json())
+    }
 
     return (
         <CropContext.Provider value={{
-            crops, addCrop, getCrops, setTerms, searchTerms, deleteCrop, updateCrop
+            crops, addCrop, getCrops, setTerms, searchTerms, deleteCrop, updateCrop, getCropById
         }}>
             {props.children}
         </CropContext.Provider>
