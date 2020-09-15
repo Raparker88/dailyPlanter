@@ -11,7 +11,6 @@
     max-width: 10em;
     background-color: #F0EFE4;
     text-align: center;
-    border-radius: 10px;
 }
 .cropContainer:hover {
     cursor: pointer;
