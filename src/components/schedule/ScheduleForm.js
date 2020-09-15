@@ -1,15 +1,20 @@
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef, useEffect, useState } from "react"
 import { CropContext } from "../crops/CropProvider"
 import { ScheduledPlantingsContext } from "./ScheduleProvider"
 
 export const SeedScheduleForm = (props) => {
-    const { addScheduledPlanting } = useContext(ScheduledPlantingsContext)
+    const [selectedCrop, setSelectedCrop] = useState({})
+
+    const { addScheduledPlanting, getScheduledPlantings, scheduledPlantings } = useContext(ScheduledPlantingsContext)
     const { crops, getCrops } = useContext(CropContext)
 
     useEffect(() => {
         getCrops()
     }, [])
-
+    useEffect(() => {
+        getScheduledPlantings()
+    }, [])
+    
     const parsedCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user")))
 
     const crop = useRef(null)
@@ -18,6 +23,27 @@ export const SeedScheduleForm = (props) => {
     const successions = useRef(null)
     const interval = useRef(null)
 
+    const findCrop = (cropId) => {
+        const cropObj = crops.find(crop => crop.id === cropId)
+        if (cropObj === undefined){
+            setSelectedCrop({})
+        }else{
+            setSelectedCrop(cropObj)
+        }
+    }
+
+    const displayCropInfo = () => {
+        if(selectedCrop.hasOwnProperty("seedingNotes")){
+            return (
+                <section className="cropInfo">
+                    <h3>{selectedCrop.name}</h3>
+                    <div className="seedingNotes">Seeding Notes: {selectedCrop.seedingNotes}</div>
+                    <div className="plantingTime">Best time to Plant: {selectedCrop.frostNotes}</div>
+                </section>
+            )
+        }
+    }
+ 
     async function constructPlantings() {
 
         const cropId = parseInt(crop.current.value)
@@ -36,6 +62,7 @@ export const SeedScheduleForm = (props) => {
             await addScheduledPlanting(newSeeding)
             newSeeding.date += parseInt(interval.current.value)
         }
+        document.getElementById("seedScheduleForm").reset()
     }
 
     const successionArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -43,12 +70,13 @@ export const SeedScheduleForm = (props) => {
     const intervalArr = [{"2 Weeks": weekInMilliseconds*2},{"3 Weeks": weekInMilliseconds*3},{"4 Weeks": weekInMilliseconds*4}]
 
     return (
-        <form className="scheduleForm">
+        <form className="scheduleForm" id="seedScheduleForm">
             <h2>Create Seeding Schedule</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="crop">Crop: </label>
-                    <select defaultValue="" name="crop" ref={crop} id="plantingCrop" className="form-control" >
+                    <select defaultValue="" name="crop" ref={crop} id="plantingCrop" className="form-control"
+                        onChange={()=>{findCrop(parseInt(crop.current.value))}} >
                         <option value="0">Select a crop</option>
                         {parsedCrops.map(c => (
                             <option key={c.id} value={c.id}>
@@ -58,6 +86,9 @@ export const SeedScheduleForm = (props) => {
                     </select>
                 </div>
             </fieldset>
+            <div>
+                {displayCropInfo()}
+            </div>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="date">Choose the first planting date</label>
