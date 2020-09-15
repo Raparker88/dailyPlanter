@@ -35,8 +35,8 @@ export const CropList = (props) => {
                 {
                     filteredCrops.map(crop => {
                         return (
-                            <div onClick={()=> props.history.push(`/crops/${crop.id}`)}className="cropContainer">
-                                <h3>{crop.name}</h3>
+                            <div onClick={()=> props.history.push(`/crops/${crop.id}`)}key={crop.id} className="cropContainer">
+                                <h3 >{crop.name}</h3>
                             </div>
                         )
                     })
