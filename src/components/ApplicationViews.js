@@ -11,14 +11,21 @@ import { LatLonProvider } from "./externals/GraphHopperProvider"
 import { UserProvider } from "./users/UserDataProvider"
 import { FrostDatesProvider } from "./externals/FrostDateProvider"
 import { FrostDateTable } from "./schedule/FrostDateTable"
+import { LogProvider } from "./log/LogProvider"
+import { LogForm } from "./log/LogForm"
 
 export const ApplicationViews = (props) => {
     return (
         <>
             <Route path="/home">
                 </Route>
-            <Route path="/log">
-                </Route>
+            <CropProvider>
+                <LogProvider>
+                    <Route exact path="/log" render={
+                        props => <LogForm {...props}/>
+                    }/>
+                </LogProvider>
+            </CropProvider>
             <ScheduledPlantingsProvider>
                 <CropProvider>
                     <LatLonProvider>
