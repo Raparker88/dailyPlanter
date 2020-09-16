@@ -28,10 +28,10 @@ export const FrostDatesProvider = (props) => {
 
 
     return (
-        <FrostDatesContext value={{
+        <FrostDatesContext.Provider value={{
             stations, getNearestStations, springProbs, getSpringProbabilities, fallProbs, getFallProbabilities
         }}>
             {props.children}
-        </FrostDatesContext>
+        </FrostDatesContext.Provider>
     )
 }

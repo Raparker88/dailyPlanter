@@ -9,17 +9,23 @@ export const LatLonProvider = (props) => {
     const getLatLon = (city, state) => {
         return fetch(`https://graphhopper.com/api/1/geocode?q=${city}+${state}&locale=us&debug=true&key=1fbc757e-9e23-42e1-9601-ca9ec738d3e2`)
             .then(res => res.json())
-            .then(response => {
-                setlatLonObj(response.hits[0].point)
+            .then(response => response.hits[0].point)
+            .then((response) => {
+                setlatLonObj(response)
+                return response
             })
+            
+            
+            
+            
     }
 
 
     return (
-        <LatLonContext value={{
+        <LatLonContext.Provider value={{
             latLonObj, getLatLon
         }}>
             {props.children}
-        </LatLonContext>
+        </LatLonContext.Provider>
     )
 }
