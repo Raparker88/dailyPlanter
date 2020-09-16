@@ -7,6 +7,10 @@ import { CropDetails } from "./crops/CropDetail"
 import { CropSearch } from "./crops/CropSearch"
 import { ScheduledPlantingsProvider } from "./schedule/ScheduleProvider"
 import { SeedScheduleForm } from "./schedule/ScheduleForm"
+import { LatLonProvider } from "./externals/GraphHopperProvider"
+import { UserProvider } from "./users/UserDataProvider"
+import { FrostDatesProvider } from "./externals/FrostDateProvider"
+import { FrostDateTable } from "./schedule/FrostDateTable"
 
 export const ApplicationViews = (props) => {
     return (
@@ -17,9 +21,17 @@ export const ApplicationViews = (props) => {
                 </Route>
             <ScheduledPlantingsProvider>
                 <CropProvider>
-                    <Route exact path="/schedule" render={
-                        props => <SeedScheduleForm {...props}/>
-                    }/>
+                    <LatLonProvider>
+                        <FrostDatesProvider> 
+                            <UserProvider>
+                                <Route exact path="/schedule" render={
+                                    props => <><SeedScheduleForm {...props}/>
+                                    <FrostDateTable/>
+                                    </>
+                                }/>
+                            </UserProvider>
+                        </FrostDatesProvider>
+                    </LatLonProvider>
                 </CropProvider>
             </ScheduledPlantingsProvider>
             <CropProvider>
