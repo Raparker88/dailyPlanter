@@ -15,7 +15,6 @@ import { LogProvider } from "./log/LogProvider"
 import { LogForm } from "./log/LogForm"
 import { LogList } from "./log/LogList"
 import { WeatherProvider } from "./externals/WeatherProvider"
-import { WeatherList } from "./home/WeatherList"
 import { TaskList } from "./home/TaskList"
 
 export const ApplicationViews = (props) => {
@@ -28,7 +27,6 @@ export const ApplicationViews = (props) => {
                             <Route path="/home" render={
                                 props => <>
                                     <TaskList {...props}/>
-                                    <WeatherList/>
                                 </>
                             }>
                                 </Route>

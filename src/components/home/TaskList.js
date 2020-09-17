@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import { ScheduledPlantingsContext, ScheduledPlantingsProvider } from "../schedule/ScheduleProvider"
 import { CropContext } from "../crops/CropProvider"
+import { WeatherList } from "./WeatherList"
 import "./HomePage.css"
 
 export const TaskList = (props) => {
@@ -26,12 +27,13 @@ export const TaskList = (props) => {
 
     return (
         <>
+        <div className="homeContainer">
+            <h2>Scheduled Plantings this week</h2>
             <section className="upcomingPlantings--container">
-                <h2>Scheduled Plantings this week</h2>
                 {futureSchedule.map(fs => {
                     const crop = crops.find(c => c.id === fs.cropId)
                     return (
-                        <div key={fs.id}>
+                        <div key={fs.id} className="detailCard--task">
                             <h4>{crop.name}</h4>
                             <p>{new Date(fs.date).toDateString()}</p>
                             <p>{fs.notes}</p>
@@ -39,6 +41,9 @@ export const TaskList = (props) => {
                     )
                 })}
             </section>
+            <WeatherList/>
+
+        </div>
         </>
     )
 }

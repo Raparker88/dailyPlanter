@@ -139,14 +139,17 @@ export const CropForm = (props) => {
                     </textarea>
                 </div>
             </fieldset>
-            <button type="submit"
-                onClick={evt => {
-                    evt.preventDefault()
-                    constructNewCrop()
-                }}
-                className="btn btn-primary">
-                {editMode ? "Save Updates" : "Create Crop"}
-            </button>
+            <div className="buttonDiv">
+                <button type="submit" id="cropButton"
+                    onClick={evt => {
+                        evt.preventDefault()
+                        constructNewCrop()
+                    }}
+                    className="btn btn-primary">
+                    {editMode ? "Save Updates" : "Create Crop"}
+                </button>
+
+            </div>
         </form>
     )
 }

@@ -64,6 +64,7 @@ export const FrostDateTable = () => {
 
     return (
         <>
+        <div className="frostDateContainer">
             <h2>Frost Dates</h2>
             <h3>Choose a Weather Station</h3>
             {stations.map(s => {
@@ -75,7 +76,7 @@ export const FrostDateTable = () => {
                 </label>)
             })}
             <h3>Spring Possibilities</h3>
-            <table>
+            <table className="frostTable">
                 <tbody>
                 <tr><th>Threshold</th><th>90%</th><th>80%</th><th>70%</th><th>60%</th><th>50%</th><th>40%</th><th>30%</th><th>20%</th><th>10%</th></tr>
                     {springProbs.map(sp => {
@@ -99,7 +100,7 @@ export const FrostDateTable = () => {
                 
             </table>
             <h3>Fall Possibilities</h3>
-            <table>
+            <table className="frostTable">
                 <tbody>
                 <tr><th>Threshold</th><th>90%</th><th>80%</th><th>70%</th><th>60%</th><th>50%</th><th>40%</th><th>30%</th><th>20%</th><th>10%</th></tr>
                     {fallProbs.map(fp => {
@@ -122,6 +123,7 @@ export const FrostDateTable = () => {
                 </tbody>
                 
             </table>
+        </div>
         </>
     )
 }

@@ -4,6 +4,10 @@
     justify-content: space-around;
 }
 
+.cropSearch {
+    margin-top: 7em;
+}
+
 .cropContainer {
     flex-basis: 20%;
     padding: 3.5rem;
@@ -35,4 +39,26 @@ h2 {
 .detail {
     flex-basis: 25%;
     margin: 2em;
+}
+
+.cropDetailContainer {
+    margin-top: 7em;
+}
+
+.cropForm {
+    background-color: #F0EFE4;
+    width: 50em;
+    padding-bottom: 35px;
+    padding-top: 35px;
+    margin: auto;
+    margin-top: 7em;
+    border-radius: 30px;
+}
+
+#cropButton {
+    position: relative;
+}
+
+.buttonDiv {
+    text-align: center;
 }

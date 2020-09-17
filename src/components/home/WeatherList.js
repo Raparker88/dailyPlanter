@@ -43,16 +43,19 @@ export const WeatherList = () => {
 
     return (
         <>
-        {filteredWeather.map(day => {
-            return (
-                <div className="forecast--card">
-                    <h3>{getDayOfTheWeek(day)}</h3>
-                    <img className="forecast--image" src={require(`./WeatherImages/${day.weather[0].icon}.png`)}></img>
-                    <div className="forecast--description">{day.weather[0].description}</div>
-                    <div className="forecast--lowTemp">{Math.round(day.main.temp_max)} •F</div>
-                </div>
-            )
-        })}
+        <section className="weatherContainer">
+
+            {filteredWeather.map(day => {
+                return (
+                    <div className="forecast--card" key={day.dt}>
+                        <h3>{getDayOfTheWeek(day)}</h3>
+                        <img className="forecast--image" src={require(`./WeatherImages/${day.weather[0].icon}.png`)}></img>
+                        <div className="forecast--description">{day.weather[0].description}</div>
+                        <div className="forecast--lowTemp">{Math.round(day.main.temp_max)} •F</div>
+                    </div>
+                )
+            })}
+        </section>
         </>
     )
 

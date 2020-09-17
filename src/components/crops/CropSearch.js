@@ -7,12 +7,15 @@ export const CropSearch = (props) => {
 
     return (
         <>
+        <div className="cropSearch">
+
             <input type="text"
                 className="input--wide"
                 onKeyUp={
                     (keyEvent) => setTerms(keyEvent.target.value)
                 }
                 placeholder="Search Crops... " />
+        </div>
         </>
     )
 }
