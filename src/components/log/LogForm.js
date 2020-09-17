@@ -45,6 +45,8 @@ export const LogForm = (props) => {
                 cropId,
                 date: log.date,
                 type: log.type
+            }).then(() => {
+                props.history.push("/log/archives")
             })
         }else{
             const newLogObject = {
@@ -90,7 +92,7 @@ export const LogForm = (props) => {
                         <label htmlFor="cropId">Crop: </label>
                         <select name="cropId" className="form-control" id="crop"
                             proptype="int"
-                            defaultValue={log.cropId}
+                            value={log.cropId}
                             onChange={handleControlledInputChange}>
 
                             <option value="0">Select a crop</option>

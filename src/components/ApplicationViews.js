@@ -28,6 +28,9 @@ export const ApplicationViews = (props) => {
                     <Route path="/log/archives" render={
                         props => <LogList {...props}/>
                     }/>
+                    <Route path="/log/edit/:logId(\d+)" render={
+                        props => <LogForm {...props} />
+                } />
                 </LogProvider>
             </CropProvider>
             <ScheduledPlantingsProvider>

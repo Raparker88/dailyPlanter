@@ -4,15 +4,15 @@ import { CropContext } from "../crops/CropProvider"
 import "./Log.css"
 
 export const LogList = (props) => {
-    const { logs, searchTerms, getLogs} =useContext(LogContext)
+    const { logs, searchTerms, getLogs, updateLog, deleteLog} =useContext(LogContext)
     const { crops, getCrops } = useContext(CropContext)
 
     const [loggedPlantings, setPlantings] = useState([])
     const [loggedHarvests, setHarvests] = useState([])
 
     useEffect(() => {
+        getCrops()
         getLogs()
-        .then(getCrops)
     },[])
 
     useEffect(() => {
@@ -22,6 +22,19 @@ export const LogList = (props) => {
         setHarvests(harvests)
     },[logs])
 
+    const handleCheckbox = (eve) => {
+        const checked = eve.target.checked
+        debugger
+        const plantingObj = loggedPlantings.find(p => p.id === parseInt(eve.target.id))
+        if (checked){
+            plantingObj.success = true
+            updateLog(plantingObj)
+        }else{
+            plantingObj.success = false
+            updateLog(plantingObj)
+        }
+    }
+
     return (
         <div className="logListContainer">
             <section className="loggedPlantingsList">
@@ -29,10 +42,19 @@ export const LogList = (props) => {
                 {loggedPlantings.map(p => {
                     const crop = crops.find(c => c.id === p.cropId)
                     return (
-                        <div key={p.id} className="plantingInfo">
+                        <div key={p.id} className="logInfo">
                             <h4>{p.date}</h4>
                             <p>{crop.name}</p>
                             <p>{p.notes}</p>
+                            <label htmlFor="success">Successful</label>
+                            <input type="checkbox" id={p.id} name="success" checked={p.success}
+                                onChange={handleCheckbox}></input>
+                            <button onClick={()=> {
+                                props.history.push(`/log/edit/${p.id}`)
+                            }}>Edit</button>
+                            <button onClick={()=> {
+                                deleteLog(p.id)
+                            }}>Delete</button>
                         </div>
                     )
                 })}
@@ -43,10 +65,16 @@ export const LogList = (props) => {
                 {loggedHarvests.map(h => {
                     const crop = crops.find(c => c.id === h.cropId)
                     return (
-                        <div key={h.id} className="harvestInfo">
+                        <div key={h.id} className="logInfo">
                             <h4>{h.date}</h4>
                             <p>{crop.name}</p>
                             <p>{h.notes}</p>
+                            <button onClick={()=> {
+                                props.history.push(`/log/edit/${h.id}`)
+                            }}>Edit</button>
+                            <button onClick={()=> {
+                                deleteLog(h.id)
+                            }}>Delete</button>
                         </div>
                     )
                 })}
