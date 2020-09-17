@@ -1,0 +1,16 @@
+.logListContainer {
+    display: flex
+}
+
+.loggedPlantingsList {
+    flex-basis: 50%;
+}
+
+.loggedHarvestsList {
+    flex-basis: 50%;
+}
+
+.logInfo {
+    width: 15em;
+    margin: auto;
+}
