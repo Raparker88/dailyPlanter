@@ -47,8 +47,8 @@ export const SeedScheduleForm = (props) => {
     async function constructPlantings() {
 
         const cropId = parseInt(crop.current.value)
-        const successionNum = successions.current.value
-        const dateInt = new Date(date.current.value).getTime()
+        const successionNum = parseInt(successions.current.value)
+        const dateInt = new Date(date.current.value.replace(/-/g, '\/')).getTime()
         
         let newSeeding = {
                 cropId,
@@ -58,7 +58,7 @@ export const SeedScheduleForm = (props) => {
             }
 
         
-        for(let i = 0; i < successionNum; i++){
+        for(let i = 0; i <= successionNum; i++){
             await addScheduledPlanting(newSeeding)
             newSeeding.date += parseInt(interval.current.value)
         }

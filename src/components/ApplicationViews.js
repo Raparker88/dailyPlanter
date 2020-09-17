@@ -16,16 +16,24 @@ import { LogForm } from "./log/LogForm"
 import { LogList } from "./log/LogList"
 import { WeatherProvider } from "./externals/WeatherProvider"
 import { WeatherList } from "./home/WeatherList"
+import { TaskList } from "./home/TaskList"
 
 export const ApplicationViews = (props) => {
     return (
         <>
             <UserProvider>
                 <WeatherProvider>
-                    <Route path="/home" render={
-                        props => <WeatherList {...props}/>
-                    }>
-                        </Route>
+                    <ScheduledPlantingsProvider>
+                        <CropProvider>
+                            <Route path="/home" render={
+                                props => <>
+                                    <TaskList {...props}/>
+                                    <WeatherList/>
+                                </>
+                            }>
+                                </Route>
+                        </CropProvider>
+                    </ScheduledPlantingsProvider>
                 </WeatherProvider>
             </UserProvider>
             <CropProvider>
