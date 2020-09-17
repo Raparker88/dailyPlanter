@@ -12,7 +12,6 @@ export const LatLonProvider = (props) => {
             .then(response => response.hits[0].point)
             .then((response) => {
                 setlatLonObj(response)
-                return response
             })
             
             
