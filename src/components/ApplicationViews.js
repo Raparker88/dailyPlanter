@@ -14,12 +14,20 @@ import { FrostDateTable } from "./schedule/FrostDateTable"
 import { LogProvider } from "./log/LogProvider"
 import { LogForm } from "./log/LogForm"
 import { LogList } from "./log/LogList"
+import { WeatherProvider } from "./externals/WeatherProvider"
+import { WeatherList } from "./home/WeatherList"
 
 export const ApplicationViews = (props) => {
     return (
         <>
-            <Route path="/home">
-                </Route>
+            <UserProvider>
+                <WeatherProvider>
+                    <Route path="/home" render={
+                        props => <WeatherList {...props}/>
+                    }>
+                        </Route>
+                </WeatherProvider>
+            </UserProvider>
             <CropProvider>
                 <LogProvider>
                     <Route exact path="/log" render={
