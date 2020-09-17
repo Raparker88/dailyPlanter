@@ -14,10 +14,10 @@ export const LogList = (props) => {
         getLogs()
         .then(getCrops)
     },[])
-    
+
     useEffect(() => {
-        plantings = logs.filter(l => l.type === "planting")
-        harvests = logs.filter(l => l.type === "harvest")
+        const plantings = logs.filter(l => l.type === "planting")
+        const harvests = logs.filter(l => l.type === "harvest")
         setPlantings(plantings)
         setHarvests(harvests)
     },[logs])
@@ -27,7 +27,7 @@ export const LogList = (props) => {
             <section className="loggedPlantingsList">
                 <h2>Plantings</h2>
                 {loggedPlantings.map(p => {
-                    crop = crops.find(c => c.id === p.cropId)
+                    const crop = crops.find(c => c.id === p.cropId)
                     return (
                         <div key={p.id} className="plantingInfo">
                             <h4>{p.date}</h4>
@@ -41,7 +41,7 @@ export const LogList = (props) => {
             <section className="loggedHarvestsList">
                 <h2>Harvests</h2>
                 {loggedHarvests.map(h => {
-                    crop = crops.find(c => c.id === h.cropId)
+                    const crop = crops.find(c => c.id === h.cropId)
                     return (
                         <div key={h.id} className="harvestInfo">
                             <h4>{h.date}</h4>

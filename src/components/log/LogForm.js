@@ -45,7 +45,7 @@ export const LogForm = (props) => {
                 cropId,
                 date: log.date,
                 type: log.type
-            }) 
+            })
         }else{
             const newLogObject = {
                 userId: parseInt(localStorage.getItem("seedPlan_user")),
@@ -57,23 +57,38 @@ export const LogForm = (props) => {
             if(log.type === "harvest"){
                 newLogObject.success = true
                 addLog(newLogObject)
-                document.getElementById("logForm").reset()
+                .then(() => {
+                    document.getElementById("date").value=""
+                    document.getElementById("notes").value=""
+                    document.getElementById("crop").value="0"
+                    const newLog = Object.assign({}, log)
+                    newLog.type = ""
+                    setLog(newLog)
+                })
             }else{
                 newLogObject.success = false
                 addLog(newLogObject)
-                document.getElementById("logForm").reset()
+                .then(() => {
+                    document.getElementById("date").value=""
+                    document.getElementById("notes").value=""
+                    document.getElementById("crop").value="0"
+                    const newLog = Object.assign({}, log)
+                    newLog.type = ""
+                    setLog(newLog)
+                })
 
             }
         }
     }
 
         return (
+            <>
             <form className="logForm" id="logForm">
                 <h2 className="logForm_title">{editMode ? "Update Log": "Log an Activity"}</h2>
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="cropId">Crop: </label>
-                        <select name="cropId" className="form-control"
+                        <select name="cropId" className="form-control" id="crop"
                             proptype="int"
                             defaultValue={log.cropId}
                             onChange={handleControlledInputChange}>
@@ -113,8 +128,9 @@ export const LogForm = (props) => {
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="notes">Notes: </label>
-                        <textarea type="text" name="notes" required className="form-control"
+                        <textarea type="text" name="notes" required className="form-control" id="notes"
                             proptype="varchar"
+                            placeholder="notes"
                             defaultValue={log.notes}
                             onChange={handleControlledInputChange}>
                         </textarea>
@@ -129,6 +145,14 @@ export const LogForm = (props) => {
                     {editMode ? "Save Updates" : "Add to log"}
             </button>
             </form>
+            <button
+                    onClick={() => {
+                        props.history.push("/log/archives")
+                    }}
+                    className="btn btn-primary">
+                    View Archives
+            </button>
+            </>
         )
 
 }

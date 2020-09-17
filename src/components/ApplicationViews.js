@@ -13,6 +13,7 @@ import { FrostDatesProvider } from "./externals/FrostDateProvider"
 import { FrostDateTable } from "./schedule/FrostDateTable"
 import { LogProvider } from "./log/LogProvider"
 import { LogForm } from "./log/LogForm"
+import { LogList } from "./log/LogList"
 
 export const ApplicationViews = (props) => {
     return (
@@ -23,6 +24,9 @@ export const ApplicationViews = (props) => {
                 <LogProvider>
                     <Route exact path="/log" render={
                         props => <LogForm {...props}/>
+                    }/>
+                    <Route path="/log/archives" render={
+                        props => <LogList {...props}/>
                     }/>
                 </LogProvider>
             </CropProvider>
