@@ -87,6 +87,35 @@ export const LogForm = (props) => {
             <>
             <form className="logForm" id="logForm">
                 <h2 className="logForm_title">{editMode ? "Update Log": "Log an Activity"}</h2>
+                <div className="dateRadio">
+                    <fieldset className="dateField">
+                        <div className="form-group">
+                            <label htmlFor="date">Date: </label>
+                            <input type="date" id="date" name="date" 
+                                proptype="varchar"
+                                placeholder="log date"
+                                defaultValue={log.date}
+                                onChange={handleControlledInputChange}
+                            />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div className="form-group radio">
+                            <div>
+                                <label>
+                                    <input type="radio" name="type" value="planting" checked={log.type === "planting"}
+                                        onChange={handleControlledInputChange}/>
+                                </label>planting
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="type" value="harvest" checked={log.type === "harvest"}
+                                        onChange={handleControlledInputChange}/>
+                                </label>harvest
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="cropId">Crop: </label>
@@ -106,29 +135,6 @@ export const LogForm = (props) => {
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
-                        <label htmlFor="date">Date: </label>
-                        <input type="date" id="date" name="date" 
-                            proptype="varchar"
-                            placeholder="log date"
-                            defaultValue={log.date}
-                            onChange={handleControlledInputChange}
-                        />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                        <label>
-                            <input type="radio" name="type" value="planting" checked={log.type === "planting"}
-                                onChange={handleControlledInputChange}/>
-                        </label>planting
-                        <label>
-                            <input type="radio" name="type" value="harvest" checked={log.type === "harvest"}
-                                onChange={handleControlledInputChange}/>
-                        </label>harvest
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
                         <label htmlFor="notes">Notes: </label>
                         <textarea type="text" name="notes" required className="form-control" id="notes"
                             proptype="varchar"
@@ -138,22 +144,28 @@ export const LogForm = (props) => {
                         </textarea>
                     </div>
                 </fieldset>
-                <button type="submit"
-                    onClick={evt => {
-                        evt.preventDefault()
-                        constructNewLog()
-                    }}
-                    className="btn btn-primary">
-                    {editMode ? "Save Updates" : "Add to log"}
-            </button>
+                <div className="logButtonDiv">
+                    <button type="submit"
+                        onClick={evt => {
+                            evt.preventDefault()
+                            constructNewLog()
+                        }}
+                        className="btn btn-primary">
+                        {editMode ? "Save Updates" : "Add to log"}
+                    </button>
+
+                </div>
             </form>
-            <button
-                    onClick={() => {
-                        props.history.push("/log/archives")
-                    }}
-                    className="btn btn-primary">
-                    View Archives
-            </button>
+            <div className="archiveButtonDiv">
+                <button
+                        onClick={() => {
+                            props.history.push("/log/archives")
+                        }}
+                        className="btn btn-primary">
+                        View Archives
+                </button>
+
+            </div>
             </>
         )
 

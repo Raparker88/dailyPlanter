@@ -37,8 +37,10 @@ export const SeedScheduleForm = (props) => {
             return (
                 <section className="cropInfo">
                     <h3>{selectedCrop.name}</h3>
-                    <div className="seedingNotes">Seeding Notes: {selectedCrop.seedingNotes}</div>
-                    <div className="plantingTime">Best time to Plant: {selectedCrop.frostNotes}</div>
+                    <h5>Seeding Notes</h5>
+                    <div className="seedingNotes">{selectedCrop.seedingNotes}</div>
+                    <h5>Best Time To Plant</h5>
+                    <div className="plantingTime">{selectedCrop.frostNotes}</div>
                 </section>
             )
         }
@@ -70,6 +72,9 @@ export const SeedScheduleForm = (props) => {
     const intervalArr = [{"2 Weeks": weekInMilliseconds*2},{"3 Weeks": weekInMilliseconds*3},{"4 Weeks": weekInMilliseconds*4}]
 
     return (
+        <div className="scheduleTop">
+        <aside></aside>
+        <div className="formContainer">
         <form className="scheduleForm" id="seedScheduleForm">
             <h2>Create Seeding Schedule</h2>
             <fieldset>
@@ -86,13 +91,10 @@ export const SeedScheduleForm = (props) => {
                     </select>
                 </div>
             </fieldset>
-            <div>
-                {displayCropInfo()}
-            </div>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="date">Choose the first planting date</label>
-                    <input type="date" id="date" name="date" ref={date}></input>
+                <div className="form-group" id="scheduleDate">
+                    <div><label htmlFor="date">Choose the first planting date </label></div>
+                    <div><input type="date" id="date" name="date" ref={date}></input></div>
                 </div>
             </fieldset>
             <fieldset>
@@ -124,7 +126,7 @@ export const SeedScheduleForm = (props) => {
                 </div>
             </fieldset>
             
-            <button type="submit"
+            <button type="submit" id="scheduleButton"
                 onClick={evt => {
                     evt.preventDefault()
                     constructPlantings()
@@ -133,6 +135,11 @@ export const SeedScheduleForm = (props) => {
                     Schedule
                 </button>
         </form>
+        </div>
+        <aside>
+            {displayCropInfo()}
+        </aside>
+        </div>
     )
     
 
