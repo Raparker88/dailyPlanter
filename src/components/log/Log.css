@@ -1,5 +1,6 @@
 .logListContainer {
-    display: flex
+    display: flex;
+    margin-top: 7em;
 }
 
 .loggedPlantingsList {
@@ -16,5 +17,33 @@
 }
 
 .logForm {
+    background-color: #F0EFE4;
+    width: 50em;
+    padding-bottom: 35px;
+    padding-top: 35px;
+    margin: auto;
     margin-top: 7em;
+     border-radius: 30px;
+    
+}
+
+.dateRadio {
+    display: flex;
+}
+
+.radio {
+    display: flex;
+    flex-direction: column;
+    align-content: left;
+    margin-right: 75px;
+}
+.dateField {
+    margin-left: 145px;
+}
+.archiveButtonDiv {
+    text-align: center;
+    margin-top: 3em;
+}
+.logButtonDiv {
+    text-align: center;
 }

@@ -24,7 +24,6 @@ export const LogList = (props) => {
 
     const handleCheckbox = (eve) => {
         const checked = eve.target.checked
-        debugger
         const plantingObj = loggedPlantings.find(p => p.id === parseInt(eve.target.id))
         if (checked){
             plantingObj.success = true
