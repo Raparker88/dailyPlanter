@@ -8,14 +8,14 @@ export const Chart = (props) => {
     const {crops, getCrops} = useContext(CropContext)
 
     const [userLogs, setUserLogs] = useState([])
-    const [cropsObj, setCropsObj] = useState({})
+    const [cropsWithMonths, setCropsWithMonths] = useState([])
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", 
     "September", "October", "November", "December"]
 
     useEffect(() => {
-        getLogs()
         getCrops()
+        .then(getLogs)
     }, [])
 
     useEffect(() => {
@@ -24,51 +24,73 @@ export const Chart = (props) => {
     },[logs])
 
     useEffect(() => {
-        debugger
-        const obj = {}
-        crops.forEach(c => {
+        
+        const cropsExpand = crops.map(c => {
             months.forEach(month => {
-                obj[c.name]["planting"][month] = false
-                obj[c.name]["harvest"][month] = false
+
+                c[month] = {harvest: false, planting: false}
+                
             })
+            const cropLogs = userLogs.filter(l => l.cropId === c.id)
+            cropLogs.forEach(cl => {
+                const dateIndex = parseInt(cl.date.slice(5.7))-1
+                const month = months[dateIndex]
+                const type = cl.type
+                c[month][type] = true
+            })
+            return c
         })
-        userLogs.forEach(ul => {
-            const crop = ul.crop.name
-            const dateIndex = parseInt(ul.date.slice(5.7))-1
-            const month = months[dateIndex]
-            const type = ul.type
-            obj[crop][type][month] = true
-        })
-        setCropsObj(obj)
+        setCropsWithMonths(cropsExpand)
+
     },[userLogs], [crops])
 
+    const getClass = (crop, month) => {
+        if(crop[month].planting && crop[month].harvest){
+            return "blueGreen"
+        }else if(crop[month].planting){
+            return "green"
+        }else if(crop[month].harvest){
+            return "blue"
+        }
+    }
+
     return (
-        <table>
-            <tbody>
-                <tr>
-                    <th>Month</th>
-                    {months.map(m => <th>{m}</th>)}
-                </tr>
-                    {crops.map(crop => {
-                        return(
-                            <tr key={crop.id}>
-                                <td>{crop.name}</td>
-                                {/* <td>{stringToDate(sp.prob_90, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_80, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_70, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_60, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_50, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_40, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_30, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_20, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_10, sp.season_id).toDateString()}</td> */}
-                            </tr>
-                        )
-                    })}
+        <div className="tableContainer">
+            <h2>Plantings and Harvests by Month</h2>
+            <div className="legend">
+                <div className="legendItem">
+                    <h4>Plantings</h4>
+                    <div className="green legendColor"></div>
+                </div>
+                <div className="legendItem">
+                    <h4>Harvests</h4>
+                    <div className="blue legendColor"></div>
+                </div>
 
-                </tbody>
+            </div>
+            <table className="logTable">
+                <tbody>
+                    <tr>
+                        <th>Crops</th>
+                        {months.map(m => <th className="column">{m}</th>)}
+                    </tr>
+                        {cropsWithMonths.map(crop => {
+                            return(
+                                <tr key={crop.id}>
+                                    <td>{crop.name}</td>
+                                    {months.map (month => {
+                                        return <td className={getClass(crop, month)}></td>
+                                    })}
+                                    
+                                </tr>
+                            )
+                        })}
 
-        </table>
+                    </tbody>
+
+            </table>
+
+        </div>
     )
 }
 

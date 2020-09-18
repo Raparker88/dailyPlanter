@@ -1,0 +1,35 @@
+
+
+.green {
+    background-color: rgb(157, 236, 157);
+    
+}
+
+.blue {
+    background-color: rgb(11, 11, 77);
+    
+}
+
+.blueGreen {
+    background-color: rgb(21, 126, 117);
+   
+}
+.column {
+    width: 5em;
+}
+
+.tableContainer {
+    margin-top: 7em;
+}
+.legend{
+    display: flex;
+}
+.legendColor{
+    width: 75px;
+    height: 20px;
+    margin: auto;
+}
+.legendItem{
+    display: flex;
+    margin: 3em;
+}
