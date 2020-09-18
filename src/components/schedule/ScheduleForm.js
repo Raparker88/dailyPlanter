@@ -135,6 +135,13 @@ export const SeedScheduleForm = (props) => {
                     Schedule
                 </button>
         </form>
+        <button
+            onClick={() => {
+                props.history.push("/schedule/fullSchedule")
+            }}
+            className="btn btn-primary">
+            View Full Schedule
+        </button>
         </div>
         <aside>
             {displayCropInfo()}
