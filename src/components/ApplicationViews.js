@@ -16,6 +16,7 @@ import { LogForm } from "./log/LogForm"
 import { LogList } from "./log/LogList"
 import { WeatherProvider } from "./externals/WeatherProvider"
 import { TaskList } from "./home/TaskList"
+import { ScheduleList } from "./schedule/ScheduleList"
 
 export const ApplicationViews = (props) => {
     return (
@@ -60,6 +61,13 @@ export const ApplicationViews = (props) => {
                             </UserProvider>
                         </FrostDatesProvider>
                     </LatLonProvider>
+                </CropProvider>
+            </ScheduledPlantingsProvider>
+            <ScheduledPlantingsProvider>
+                <CropProvider>
+                    <Route path="/schedule/fullSchedule" render={
+                        props => <ScheduleList {...props}/>
+                    }/>
                 </CropProvider>
             </ScheduledPlantingsProvider>
             <CropProvider>

@@ -48,3 +48,14 @@ aside {
 .frostTable {
     margin:auto;
 }
+.scheduleListContainer {
+    margin-top: 7em;
+    display: flex;
+    justify-content: space-around;
+}
+.plantingCard {
+    display: flex;
+}
+.cropName {
+    margin-right: 5px;
+}
