@@ -18,7 +18,7 @@ export const TaskList = (props) => {
     useEffect(() => {
         const weekInMilliseconds = 7 * 24 * 60 * 60 * 1000
         const thisWeek = scheduledPlantings.filter(p => {
-            if(p.date >= Date.now() && p.date <= Date.now()+weekInMilliseconds){
+            if(p.date >= Date.now() && p.date <= Date.now()+weekInMilliseconds && p.userId === parseInt(localStorage.getItem("seedPlan_user"))){
                 return true
             }
         })

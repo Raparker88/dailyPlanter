@@ -16,8 +16,16 @@ export const LogList = (props) => {
     },[])
 
     useEffect(() => {
-        const plantings = logs.filter(l => l.type === "planting")
-        const harvests = logs.filter(l => l.type === "harvest")
+        const plantings = logs.filter(l => {
+            if(l.type === "planting" && l.userId === parseInt(localStorage.getItem("seedPlan_user"))){
+                return true
+            }
+        })
+        const harvests = logs.filter(l => {
+            if(l.type === "harvest" && l.userId === parseInt(localStorage.getItem("seedPlan_user"))){
+                return true
+            }
+        })
         setPlantings(plantings)
         setHarvests(harvests)
     },[logs])
