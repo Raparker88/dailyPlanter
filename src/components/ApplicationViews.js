@@ -17,6 +17,7 @@ import { LogList } from "./log/LogList"
 import { WeatherProvider } from "./externals/WeatherProvider"
 import { TaskList } from "./home/TaskList"
 import { ScheduleList } from "./schedule/ScheduleList"
+import { Chart } from "./chart/Chart"
 
 export const ApplicationViews = (props) => {
     return (
@@ -87,6 +88,13 @@ export const ApplicationViews = (props) => {
                         props => <CropForm {...props} />
                 } />
             </CropProvider>
+            <LogProvider>
+                <CropProvider>
+                    <Route path="/chart" render={
+                            props => <Chart {...props} />
+                    } />
+                </CropProvider>
+            </LogProvider>
         </>
     )
 }

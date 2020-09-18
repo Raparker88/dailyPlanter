@@ -18,6 +18,9 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/Crops">Crops</Link>
             </li>
             <li className="navbar__item">
+                <Link className="navbar__link" to="/Chart">Chart</Link>
+            </li>
+            <li className="navbar__item">
                 <Link onClick={() => localStorage.removeItem("seedPlan_user")} className="navbar__link" to="/login">Logout</Link>
             </li>
         </ul>
