@@ -19,13 +19,17 @@ export const Chart = (props) => {
     }, [])
 
     useEffect(() => {
-        const filteredLogs = logs.filter(l => l.userId === parseInt(localStorage.getItem("seedPlan_user")))
+        const filteredLogs = logs.filter(l => {
+            if(l.userId === parseInt(localStorage.getItem("seedPlan_user")) && l.success){
+                return true
+            }
+        })
         setUserLogs(filteredLogs)
     },[logs])
 
     useEffect(() => {
-        
-        const cropsExpand = crops.map(c => {
+
+       const cropsExpand = crops.map(c => {
             months.forEach(month => {
 
                 c[month] = {harvest: false, planting: false}
@@ -33,7 +37,7 @@ export const Chart = (props) => {
             })
             const cropLogs = userLogs.filter(l => l.cropId === c.id)
             cropLogs.forEach(cl => {
-                const dateIndex = parseInt(cl.date.slice(5.7))-1
+                const dateIndex = parseInt(cl.date.slice(5,7))-1
                 const month = months[dateIndex]
                 const type = cl.type
                 c[month][type] = true

@@ -8,7 +8,7 @@ export const LogProvider = (props) => {
     const [searchTerms, setTerms] = useState("")
 
     const getLogs = () => {
-        return fetch("http://localhost:8088/logs?_expand=crop")
+        return fetch("http://localhost:8088/logs")
             .then(res => res.json())
             .then(setLogs)
     }
