@@ -28,8 +28,8 @@ export const Chart = (props) => {
     },[logs])
 
     useEffect(() => {
-
-       const cropsExpand = crops.map(c => {
+        const userCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user")))
+       const cropsExpand = userCrops.map(c => {
             months.forEach(month => {
 
                 c[month] = {harvest: false, planting: false}
