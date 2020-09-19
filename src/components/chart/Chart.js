@@ -59,6 +59,7 @@ export const Chart = (props) => {
     }
 
     return (
+        <>
         <div className="tableContainer">
             <h2>Plantings and Harvests by Month</h2>
             <div className="legend">
@@ -95,6 +96,10 @@ export const Chart = (props) => {
             </table>
 
         </div>
+        <div className="extraChartInfo">
+            <p>* plantings must be marked as successful in the log archives to appear on chart</p>
+        </div>
+        </>
     )
 }
 
