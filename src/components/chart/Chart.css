@@ -19,10 +19,16 @@
 }
 
 .tableContainer {
-    margin-top: 7em;
+    width: fit-content;
+    margin: 7em auto 2em;
+    background-color: #F0EFE4;
+    padding: 2em 4em 4em;
+    border-radius: 30px;
 }
 .legend{
     display: flex;
+    width: 30em;
+    margin: auto;
 }
 .legendColor{
     width: 75px;
@@ -32,4 +38,17 @@
 .legendItem{
     display: flex;
     margin: 3em;
+    margin: auto;
+    width: 10em;
+}
+
+.extraChartInfo {
+    text-align: right;
+    width: fit-content;
+    margin: auto;
+}
+
+.logTable {
+    width: fit-content;
+    margin: auto;
 }

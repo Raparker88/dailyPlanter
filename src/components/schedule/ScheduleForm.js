@@ -4,6 +4,7 @@ import { ScheduledPlantingsContext } from "./ScheduleProvider"
 
 export const SeedScheduleForm = (props) => {
     const [selectedCrop, setSelectedCrop] = useState({})
+    const [parsedCrops, setParsedCrops] = useState([])
 
     const { addScheduledPlanting, getScheduledPlantings, scheduledPlantings } = useContext(ScheduledPlantingsContext)
     const { crops, getCrops } = useContext(CropContext)
@@ -15,7 +16,10 @@ export const SeedScheduleForm = (props) => {
         getScheduledPlantings()
     }, [])
     
-    const parsedCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user")))
+    useEffect (() => {
+        const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        setParsedCrops(userCrops)
+    }, [crops])
 
     const crop = useRef(null)
     const notes = useRef(null)
@@ -24,12 +28,8 @@ export const SeedScheduleForm = (props) => {
     const interval = useRef(null)
 
     const findCrop = (cropId) => {
-        const cropObj = crops.find(crop => crop.id === cropId)
-        if (cropObj === undefined){
-            setSelectedCrop({})
-        }else{
-            setSelectedCrop(cropObj)
-        }
+        const cropObj = crops.find(crop => crop.id === cropId) || {}
+        setSelectedCrop(cropObj)
     }
 
     const displayCropInfo = () => {
@@ -56,7 +56,8 @@ export const SeedScheduleForm = (props) => {
                 cropId,
                 notes: notes.current.value,
                 date: dateInt,
-                userId: parseInt(localStorage.getItem("seedPlan_user"))
+                userId: parseInt(localStorage.getItem("seedPlan_user")),
+                complete: false
             }
 
         
@@ -68,7 +69,7 @@ export const SeedScheduleForm = (props) => {
     }
 
     const successionArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-    const weekInMilliseconds = 7 * 24 * 60 * 60 * 1000
+    const weekInMilliseconds = 7 * 24 * 60 * 60 * 1000 
     const intervalArr = [{"2 Weeks": weekInMilliseconds*2},{"3 Weeks": weekInMilliseconds*3},{"4 Weeks": weekInMilliseconds*4}]
 
     return (

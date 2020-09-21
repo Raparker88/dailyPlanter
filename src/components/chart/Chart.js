@@ -28,8 +28,8 @@ export const Chart = (props) => {
     },[logs])
 
     useEffect(() => {
-
-       const cropsExpand = crops.map(c => {
+        const userCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user")))
+       const cropsExpand = userCrops.map(c => {
             months.forEach(month => {
 
                 c[month] = {harvest: false, planting: false}
@@ -59,6 +59,7 @@ export const Chart = (props) => {
     }
 
     return (
+        <>
         <div className="tableContainer">
             <h2>Plantings and Harvests by Month</h2>
             <div className="legend">
@@ -95,6 +96,10 @@ export const Chart = (props) => {
             </table>
 
         </div>
+        <div className="extraChartInfo">
+            <p>* plantings must be marked as successful in the log archives to appear on chart</p>
+        </div>
+        </>
     )
 }
 

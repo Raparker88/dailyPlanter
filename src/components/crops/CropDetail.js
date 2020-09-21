@@ -21,19 +21,19 @@ export const CropDetails = (props) => {
             <section className="cropDetails">
                 <div className="detail crop__time">
                     <h3>When to Plant</h3>
-                    <p>{crop.frostNotes}</p>
+                    <p className="detailNote">{crop.frostNotes}</p>
                 </div>
                 <div className="detail crop__seeding">
                     <h3>Seeding Strategies</h3>
-                    <p>{crop.seedingNotes}</p>
+                    <p className="detailNote">{crop.seedingNotes}</p>
                 </div>
                 <div className="detail crop__harvesting">
                     <h3>Harvesting Strategies</h3>
-                    <p>{crop.harvestingNotes}</p>
+                    <p className="detailNote">{crop.harvestingNotes}</p>
                 </div>
                 <div className="detail crop__general">
                     <h3>Other Notes</h3>
-                    <p>{crop.genNotes}</p>
+                    <p className="detailNote">{crop.genNotes}</p>
                 </div>
             </section>
             <button onClick={

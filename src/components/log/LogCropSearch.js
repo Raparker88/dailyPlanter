@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
-import { CropContext } from "./CropProvider"
-import "./Crop.css"
+import { CropContext } from "../crops/CropProvider"
+import "./Log.css"
 
 export const CropSearch = (props) => {
-    const { setTerms, searchTerms } = useContext(CropContext)
+    const { setLogTerms, logSearchTerms } = useContext(CropContext)
 
     return (
         <>
@@ -11,9 +11,9 @@ export const CropSearch = (props) => {
 
             <input type="text"
                 className="input--wide"
-                defaultValue = {searchTerms}
+                defaultValue = {logSearchTerms}
                 onKeyUp={
-                    (keyEvent) => setTerms(keyEvent.target.value)
+                    (keyEvent) => setLogTerms(keyEvent.target.value)
                 }
                 placeholder="Search Crops... " />
         </div>

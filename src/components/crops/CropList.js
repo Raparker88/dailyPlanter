@@ -13,9 +13,9 @@ export const CropList = (props) => {
     
 
     useEffect(() => {
-        const parsedCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user")))
+        const parsedCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
         if (searchTerms !== "") {
-            const subset = parsedCrops.filter(crop => crop.name.toLowerCase().includes(searchTerms.toLowerCase()))
+            const subset = parsedCrops.filter(crop => crop.name.toLowerCase().includes(searchTerms.toLowerCase())) || []
             setFiltered(subset)
         } else {
             
