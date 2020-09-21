@@ -18,7 +18,8 @@ export const LogList = (props) => {
     },[])
 
     useEffect(() => {
-        const sortedLogs = logs.sort(function(a,b){return b.date-a.date}) || []
+        const sortedLogs = logs.sort(function(a,b){
+            return new Date(b.date).getTime()-new Date(a.date).getTime()}) || []
 
         const plantings = sortedLogs.filter(l => {
             if(l.type === "planting" && l.userId === parseInt(localStorage.getItem("seedPlan_user"))){
@@ -60,7 +61,7 @@ export const LogList = (props) => {
     }
     
     const iterateObject = (obj, type) => {
-        const keys = Object.keys(obj)
+        const keys = Object.keys(obj) 
         if (type === "harvest"){
             return keys.map(key => {
                 return (
