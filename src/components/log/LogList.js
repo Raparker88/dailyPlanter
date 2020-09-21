@@ -43,7 +43,8 @@ export const LogList = (props) => {
     useEffect(() => {
         const userLogs = logs.filter(l => l.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
         if (logSearchTerms !== "") {
-            const subset = crops.filter(crop => crop.name.toLowerCase().includes(logSearchTerms.toLowerCase())) || []
+            const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+            const subset = userCrops.filter(crop => crop.name.toLowerCase().includes(logSearchTerms.toLowerCase())) || []
             let logSubset=[]
             subset.forEach(crop => {
                 userLogs.forEach(log => {

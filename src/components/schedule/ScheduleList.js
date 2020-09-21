@@ -2,17 +2,19 @@
 import React, { useState, useContext, useEffect, useRef } from "react"
 import { ScheduledPlantingsContext } from "./ScheduleProvider"
 import { CropContext } from "../crops/CropProvider"
+import {CropSearch} from "./ScheduleSearch"
 import "./Schedule.css"
 import { getAllByPlaceholderText } from "@testing-library/react"
 
 export const ScheduleList = (props) => {
     const { scheduledPlantings, getScheduledPlantings, updateScheduledPlanting, deleteScheduledPlanting } = useContext(ScheduledPlantingsContext)
-    const { crops, getCrops } = useContext(CropContext)
+    const { crops, getCrops, scheduleSearchTerms, setScheduleSearchTerms } = useContext(CropContext)
 
     const [futureSchedule, setFutureSchedule] = useState({})
     const [pastSchedule, setPastSchedule] = useState({})
     const [chosenSchedule, setChosenSchedule] = useState({})
     const [userCrops, setUserCrops] = useState([])
+    const [filteredSchedule, setFilteredSchedule] = useState([])
 
     const scheduleEditDialog = useRef()
 
@@ -21,13 +23,34 @@ export const ScheduleList = (props) => {
         getScheduledPlantings()
     } ,[])
     
-    useEffect(() => {
-        const filteredCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
-        setUserCrops(filteredCrops)
-    },[crops])
+    // useEffect(() => {
+    //     const filteredCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+    //     setUserCrops(filteredCrops)
+    // },[crops])
 
     useEffect(() => {
-        const future = scheduledPlantings.filter(p => {
+        const userSchedule = scheduledPlantings.filter(p => p.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        if (scheduleSearchTerms !== "") {
+            const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+            const subset = userCrops.filter(crop => crop.name.toLowerCase().includes(scheduleSearchTerms.toLowerCase())) || []
+            let scheduleSubset=[]
+            subset.forEach(crop => {
+                userSchedule.forEach(s => {
+                    if(crop.id === s.cropId){
+                        scheduleSubset.push(s)
+                    }
+                })
+            })
+            setFilteredSchedule(scheduleSubset)
+        } else {
+            
+            setFilteredSchedule(userSchedule)
+        }
+    }, [scheduleSearchTerms, scheduledPlantings, crops])
+
+
+    useEffect(() => {
+        const future = filteredSchedule.filter(p => {
             if(p.date >= Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user"))){
                 return true
             }
@@ -36,7 +59,7 @@ export const ScheduleList = (props) => {
         const sortedFuture = future.sort(function(a,b){return a.date-b.date})
         createDateObject(sortedFuture, "future")
 
-        const past = scheduledPlantings.filter(p => {
+        const past = filteredSchedule.filter(p => {
             if(p.date < Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user"))){
                 return true
             }
@@ -44,7 +67,7 @@ export const ScheduleList = (props) => {
         //sort in descending order
         const sortedPast = past.sort(function(a,b){return b.date-a.date})
         createDateObject(sortedPast, "past")
-    },[scheduledPlantings],[crops])
+    },[filteredSchedule])
 
     const createDateObject = (arr, type) => {
         let dateObj={}
@@ -112,6 +135,7 @@ export const ScheduleList = (props) => {
 
     return (
         <>
+        <CropSearch/>
         <div className="scheduleListContainer">
             <dialog className="dialog dialog--scheduleEdit" ref={scheduleEditDialog}>
                 <form>
