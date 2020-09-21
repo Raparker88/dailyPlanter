@@ -22,7 +22,7 @@ export const WeatherList = () => {
             if (w.dt_txt.split(" ")[1] === "00:00:00") {
                 return true
           }
-        })
+        }) || []
         setFilteredWeather(fiveDayForecast)
     },[weather])
 

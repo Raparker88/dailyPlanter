@@ -6,7 +6,8 @@ export const LogForm = (props) => {
     const { crops, getCrops } = useContext(CropContext)
     const { addLog, logs, updateLog, getLogs } = useContext(LogContext)
     
-    const [log, setLog] = useState({}) 
+    const [log, setLog] = useState({})
+    const [userCrops, setUserCrops] = useState([]) 
 
     const editMode = props.match.params.hasOwnProperty("logId")
 
@@ -28,6 +29,11 @@ export const LogForm = (props) => {
         getLogs()
         getCrops()
     },[])
+
+    useEffect(() => {
+        const filteredCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        setUserCrops(filteredCrops)
+    },[crops])
 
     useEffect(() => {
         getLogInEditMode()
@@ -125,7 +131,7 @@ export const LogForm = (props) => {
                             onChange={handleControlledInputChange}>
 
                             <option value="0">Select a crop</option>
-                            {crops.map(c => (
+                            {userCrops.map(c => (
                                 <option key={c.id} value={c.id}>
                                     {c.name}
                                 </option>

@@ -23,24 +23,24 @@ export const TaskList = (props) => {
              && p.userId === parseInt(localStorage.getItem("seedPlan_user")) || new Date(p.date).toDateString() === new Date(Date.now()).toDateString()){
                 return true
             }
-        })
+        }) || []
         //sort in ascending order
-        const sortedFuture = thisWeek.sort(function(a,b){return a.date-b.date})
+        const sortedFuture = thisWeek.sort(function(a,b){return a.date-b.date}) || []
         setFutureSchedule(sortedFuture)
 
         const pastOverdue = scheduledPlantings.filter(p => {
             if(p.date < Date.now() && new Date(p.date).toDateString() != new Date(Date.now()).toDateString() && !p.complete){
                 return true
             }
-        })
+        }) || []
         //sort in descending order
-        const sortedPast = pastOverdue.sort(function(a,b){return b.date-a.date})
+        const sortedPast = pastOverdue.sort(function(a,b){return b.date-a.date}) || []
         setPastSchedule(sortedPast)
     },[scheduledPlantings])
 
     const handleCheckbox = (eve) => {
         const checked = eve.target.checked
-        const scheduleObj = scheduledPlantings.find(p => p.id === parseInt(eve.target.id))
+        const scheduleObj = scheduledPlantings.find(p => p.id === parseInt(eve.target.id)) || {}
         if (checked){
             scheduleObj.complete = true
             updateScheduledPlanting(scheduleObj)
