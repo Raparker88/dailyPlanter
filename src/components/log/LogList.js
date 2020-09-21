@@ -10,6 +10,7 @@ export const LogList = (props) => {
 
     const [plantingsObj, setPlantingsObj] = useState({})
     const [harvestsObj, setHarvestsObj] = useState({})
+    const [filteredLogs, setFiltered] = useState([])
     
 
     useEffect(() => {
@@ -36,6 +37,17 @@ export const LogList = (props) => {
         createDateObj(plantings, "plantings")
         createDateObj(harvests, "harvests")
     },[logs])
+
+    // useEffect(() => {
+    //     const parsedCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+    //     if (searchTerms !== "") {
+    //         const subset = parsedCrops.filter(crop => crop.name.toLowerCase().includes(searchTerms.toLowerCase())) || []
+    //         setFiltered(subset)
+    //     } else {
+            
+    //         setFiltered(parsedCrops)
+    //     }
+    // }, [logSearchTerms, crops])
     
 
     
@@ -135,6 +147,7 @@ export const LogList = (props) => {
 
     return (
         <>
+        <CropSearch/>
         <div className="logListContainer">
             <section className="loggedPlantingsList">
                 <h2>Plantings</h2>
