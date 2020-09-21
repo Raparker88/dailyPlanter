@@ -7,7 +7,7 @@ export const CropProvider = (props) => {
     const [crops, setCrops] = useState([])
     const [searchTerms, setTerms] = useState("")
     const [scheduleSearchTerms, setScheduleTerms] = useState("")
-    const [logSearchTerms, setLogTerms] = useState("")
+    const [logSearchTerms, setLogSearchTerms] = useState("")
 
     const getCrops = () => {
         return fetch("http://localhost:8088/crops")
@@ -50,7 +50,7 @@ export const CropProvider = (props) => {
     return (
         <CropContext.Provider value={{
             crops, addCrop, getCrops, setTerms, searchTerms, deleteCrop, updateCrop, getCropById,
-            scheduleSearchTerms, setScheduleTerms, logSearchTerms, setLogTerms
+            scheduleSearchTerms, setScheduleTerms, logSearchTerms, setLogSearchTerms
         }}>
             {props.children}
         </CropContext.Provider>

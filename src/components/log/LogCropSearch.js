@@ -3,7 +3,7 @@ import { CropContext } from "../crops/CropProvider"
 import "./Log.css"
 
 export const CropSearch = (props) => {
-    const { setLogTerms, logSearchTerms } = useContext(CropContext)
+    const { setLogSearchTerms, logSearchTerms } = useContext(CropContext)
 
     return (
         <>
@@ -13,7 +13,7 @@ export const CropSearch = (props) => {
                 className="input--wide"
                 defaultValue = {logSearchTerms}
                 onKeyUp={
-                    (keyEvent) => setLogTerms(keyEvent.target.value)
+                    (keyEvent) => setLogSearchTerms(keyEvent.target.value)
                 }
                 placeholder="Search Crops... " />
         </div>

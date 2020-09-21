@@ -5,7 +5,7 @@ export const LogContext = React.createContext()
 
 export const LogProvider = (props) => {
     const [logs, setLogs] = useState([])
-    const [searchTerms, setTerms] = useState("")
+    
 
     const getLogs = () => {
         return fetch("http://localhost:8088/logs")
@@ -47,8 +47,7 @@ export const LogProvider = (props) => {
 
     return (
         <LogContext.Provider value={{
-            logs, addLog, getLogs, setTerms, searchTerms, 
-            deleteLog, updateLog, getLogById
+            logs, addLog, getLogs, deleteLog, updateLog, getLogById
         }}>
             {props.children}
         </LogContext.Provider>

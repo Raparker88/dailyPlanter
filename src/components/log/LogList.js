@@ -5,11 +5,12 @@ import { CropSearch} from "./LogCropSearch"
 import "./Log.css"
 
 export const LogList = (props) => {
-    const { logs, logSearchTerms, getLogs, updateLog, deleteLog} =useContext(LogContext)
-    const { crops, getCrops } = useContext(CropContext)
+    const { logs, getLogs, updateLog, deleteLog} =useContext(LogContext)
+    const { crops, getCrops, logSearchTerms, setLogSearchTerms } = useContext(CropContext)
 
     const [plantingsObj, setPlantingsObj] = useState({})
     const [harvestsObj, setHarvestsObj] = useState({})
+    const [filteredLogs, setFilteredLogs] = useState([])
     
 
     useEffect(() => {
@@ -18,7 +19,9 @@ export const LogList = (props) => {
     },[])
 
     useEffect(() => {
-        const sortedLogs = logs.sort(function(a,b){
+        // const sortedLogs = logs.sort(function(a,b){
+        //     return new Date(b.date).getTime()-new Date(a.date).getTime()}) || []
+        const sortedLogs = filteredLogs.sort(function(a,b){
             return new Date(b.date).getTime()-new Date(a.date).getTime()}) || []
 
         const plantings = sortedLogs.filter(l => {
@@ -35,7 +38,26 @@ export const LogList = (props) => {
         
         createDateObj(plantings, "plantings")
         createDateObj(harvests, "harvests")
-    },[logs])
+    },[filteredLogs])
+
+    useEffect(() => {
+        const userLogs = logs.filter(l => l.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        if (logSearchTerms !== "") {
+            const subset = crops.filter(crop => crop.name.toLowerCase().includes(logSearchTerms.toLowerCase())) || []
+            let logSubset=[]
+            subset.forEach(crop => {
+                userLogs.forEach(log => {
+                    if(crop.id === log.cropId){
+                        logSubset.push(log)
+                    }
+                })
+            })
+            setFilteredLogs(logSubset)
+        } else {
+            
+            setFilteredLogs(userLogs)
+        }
+    }, [logSearchTerms, logs, crops])
     
 
     
@@ -135,6 +157,7 @@ export const LogList = (props) => {
 
     return (
         <>
+        <CropSearch/>
         <div className="logListContainer">
             <section className="loggedPlantingsList">
                 <h2>Plantings</h2>
