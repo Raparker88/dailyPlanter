@@ -47,6 +47,9 @@ aside {
 
 .frostTable {
     margin:auto;
+    background-color: #F0EFE4;
+    padding: 15px;
+    border-radius: 30px;
 }
 .scheduleListContainer {
     margin-top: 7em;
@@ -98,3 +101,61 @@ aside {
 .futurePlantings--container {
     margin: auto;
 }
+
+.tdInfo{
+    width: 75px;
+}
+td {
+    border-bottom: .5px solid white;
+}
+.stationContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: initial;
+    padding: 34px 20px;
+    flex-basis: 30%;
+}
+.frostDateContainer{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+.frostDateTitle{
+    width: 40em;
+    margin: 40px auto 0px;
+    border-bottom: 1px solid;
+}
+.tableTwo {
+    margin-bottom: 50px;
+}
+
+.showButton {
+    color: rgb(141, 106, 17);
+    border:  rgb(141, 106, 17) 1px solid;
+    background-color: white;
+    margin: 5px;
+    transition-duration: 0.6s;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+    
+}
+.showButton:hover {
+    color: white;
+    background-color:  rgb(141, 106, 17);
+    border: none;
+}
+
+.editDelete{
+    border: none;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 7px;
+    font-size: 15px;
+}
+.editDelete:hover {
+    background-color: rgb(172, 144, 76);
+    color: white;
+}
+

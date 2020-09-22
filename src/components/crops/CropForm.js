@@ -145,7 +145,7 @@ export const CropForm = (props) => {
                         evt.preventDefault()
                         constructNewCrop()
                     }}
-                    className="btn btn-primary">
+                    className="btn btn-primary submitButton">
                     {editMode ? "Save Updates" : "Create Crop"}
                 </button>
 

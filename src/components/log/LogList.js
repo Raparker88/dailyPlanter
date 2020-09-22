@@ -129,11 +129,15 @@ export const LogList = (props) => {
                                     <label htmlFor="success">Successful</label>
                                     <input  type="checkbox" id={o.id} name="success" checked={o.success}
                                         onChange={handleCheckbox}></input>
-                                <div className="editDelete">
-                                    <button onClick={()=> {
+                                <div className="editDeleteDiv">
+                                    <button 
+                                        className="editDelete"
+                                        onClick={()=> {
                                         props.history.push(`/log/edit/${o.id}`)
                                     }}>Edit</button>
-                                    <button onClick={()=> {
+                                    <button 
+                                        className="editDelete"
+                                        onClick={()=> {
                                         deleteLog(o.id)
                                     }}>Delete</button>
                                 </div>
@@ -167,11 +171,15 @@ export const LogList = (props) => {
         <>
         <CropSearch/>
         <div className="logButtons">
-            <button onClick={()=> {
+            <button 
+                className="showButton"
+                onClick={()=> {
                 setPlantingClass("logList")
                 setHarvestClass("logHidden")
             }}>Show Logged Plantings</button>
-            <button onClick={()=> {
+            <button
+                className="showButton"
+                onClick={()=> {
                 setPlantingClass("logHidden")
                 setHarvestClass("logList")
             }}>Show Logged Harvests</button>

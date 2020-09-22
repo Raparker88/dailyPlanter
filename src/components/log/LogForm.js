@@ -156,7 +156,7 @@ export const LogForm = (props) => {
                             evt.preventDefault()
                             constructNewLog()
                         }}
-                        className="btn btn-primary">
+                        className="btn btn-primary submitButton">
                         {editMode ? "Save Updates" : "Add to log"}
                     </button>
 
@@ -167,7 +167,7 @@ export const LogForm = (props) => {
                         onClick={() => {
                             props.history.push("/log/archives")
                         }}
-                        className="btn btn-primary">
+                        className="btn btn-primary archiveButton">
                         View Archives
                 </button>
 

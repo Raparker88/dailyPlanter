@@ -101,12 +101,16 @@ export const ScheduleList = (props) => {
                             <div key={o.id} className="plantingCard">
                             <h4 className="cropName"><b>{crop.name}</b></h4>
                             <p className="scheduleNotes">{o.notes}</p>
-                            <div className="editDelete">
-                                <button onClick={()=> {
+                            <div className="editDeleteDiv">
+                                <button 
+                                    className="editDelete"
+                                    onClick={()=> {
                                     setChosenSchedule(o)
                                         scheduleEditDialog.current.showModal()
                                 }}>Edit</button>
-                                <button onClick={()=> {
+                                <button 
+                                    className="editDelete"
+                                    onClick={()=> {
                                     deleteScheduledPlanting(o.id)
                                 }}>Delete</button>
                                 </div>
@@ -151,11 +155,15 @@ export const ScheduleList = (props) => {
         <>
         <CropSearch/>
         <div className="buttonContainer">
-            <button onClick={()=> {
+            <button 
+                className="showButton"
+                onClick={()=> {
                 setFutureClass("futurePlantings--container")
                 setPastClass("schedule--hidden")
             }}>Show Future Planting Schedules</button>
-            <button onClick={()=> {
+            <button
+                className="showButton" 
+                onClick={()=> {
                 setFutureClass("schedule--hidden")
                 setPastClass("pastPlantings--container")
             }}>Show Past Planting Schedules</button>
