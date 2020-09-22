@@ -29,7 +29,9 @@ export const CropList = (props) => {
 
             <h2>Crops</h2>
             <div className="buttonContainer">
-                <button onClick={() => props.history.push("/crops/create")}>
+                <button 
+                    className= "showButton"
+                    onClick={() => props.history.push("/crops/create")}>
                     Add a new crop
                 </button>
             </div>

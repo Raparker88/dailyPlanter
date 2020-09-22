@@ -132,7 +132,7 @@ export const SeedScheduleForm = (props) => {
                     evt.preventDefault()
                     constructPlantings()
                 }}
-                className="btn btn-primary">
+                className="btn btn-primary submitButton">
                     Schedule
                 </button>
         </form>
@@ -140,7 +140,7 @@ export const SeedScheduleForm = (props) => {
             onClick={() => {
                 props.history.push("/schedule/fullSchedule")
             }}
-            className="btn btn-primary">
+            className="btn btn-primary archiveButton">
             View Full Schedule
         </button>
         </div>

@@ -64,17 +64,22 @@ export const FrostDateTable = () => {
 
     return (
         <>
+        <h2 className="frostDateTitle">Frost Dates</h2>
         <div className="frostDateContainer">
-            <h2>Frost Dates</h2>
-            <h3>Choose a Weather Station</h3>
-            {stations.map(s => {
-                return (<label key={s.id}>
-                    <input type="radio" name="station" key={s.id} value={s.id} checked={s.id === chosenStationId}
-                        onChange={() => {
-                            setChosenStation(`${s.id}`)
-                        }}/>{s.name} {Math.round(s.distance*100)/100} miles away
-                </label>)
-            })}
+            <div className="stationContainer">
+                <h3>Choose a Weather Station</h3>
+                {stations.map(s => {
+                    return (<label key={s.id}>
+                        <input type="radio" name="station" key={s.id} value={s.id} checked={s.id === chosenStationId}
+                            onChange={() => {
+                                setChosenStation(`${s.id}`)
+                            }}/>{s.name} {Math.round(s.distance*100)/100} miles away
+                    </label>)
+                })}
+
+            </div>
+            <div className="frostTableContainer">
+
             <h3>Spring Possibilities</h3>
             <table className="frostTable">
                 <tbody>
@@ -83,15 +88,15 @@ export const FrostDateTable = () => {
                         return(
                             <tr key={sp.id}>
                                 <td>{sp.temperature_threshold}°F</td>
-                                <td>{stringToDate(sp.prob_90, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_80, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_70, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_60, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_50, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_40, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_30, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_20, sp.season_id).toDateString()}</td>
-                                <td>{stringToDate(sp.prob_10, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_90, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_80, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_70, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_60, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_50, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_40, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_30, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_20, sp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(sp.prob_10, sp.season_id).toDateString()}</td>
                             </tr>
                         )
                     })}
@@ -100,22 +105,22 @@ export const FrostDateTable = () => {
                 
             </table>
             <h3>Fall Possibilities</h3>
-            <table className="frostTable">
+            <table className="frostTable tableTwo">
                 <tbody>
                 <tr><th>Threshold</th><th>90%</th><th>80%</th><th>70%</th><th>60%</th><th>50%</th><th>40%</th><th>30%</th><th>20%</th><th>10%</th></tr>
                     {fallProbs.map(fp => {
                         return(
                             <tr key={fp.id}>
                                 <td>{fp.temperature_threshold}°F</td>
-                                <td>{stringToDate(fp.prob_90, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_80, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_70, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_60, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_50, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_40, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_30, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_20, fp.season_id).toDateString()}</td>
-                                <td>{stringToDate(fp.prob_10, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_90, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_80, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_70, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_60, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_50, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_40, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_30, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_20, fp.season_id).toDateString()}</td>
+                                <td className="tdInfo">{stringToDate(fp.prob_10, fp.season_id).toDateString()}</td>
                             </tr>
                         )
                     })}
@@ -123,6 +128,7 @@ export const FrostDateTable = () => {
                 </tbody>
                 
             </table>
+            </div>
         </div>
         </>
     )
