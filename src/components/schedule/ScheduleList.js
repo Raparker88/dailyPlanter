@@ -101,13 +101,16 @@ export const ScheduleList = (props) => {
                             <div key={o.id} className="plantingCard">
                             <h4 className="cropName"><b>{crop.name}</b></h4>
                             <p className="scheduleNotes">{o.notes}</p>
-                            <button onClick={()=> {
-                                setChosenSchedule(o)
-                                    scheduleEditDialog.current.showModal()
-                            }}>Edit</button>
-                            <button onClick={()=> {
-                                deleteScheduledPlanting(o.id)
-                            }}>Delete</button>
+                            <div className="editDelete">
+                                <button onClick={()=> {
+                                    setChosenSchedule(o)
+                                        scheduleEditDialog.current.showModal()
+                                }}>Edit</button>
+                                <button onClick={()=> {
+                                    deleteScheduledPlanting(o.id)
+                                }}>Delete</button>
+                                </div>
+
                             </div>
                             
                         )
@@ -131,6 +134,17 @@ export const ScheduleList = (props) => {
             const [ISO, placeholder] = new Date(date).toISOString().split('T')
             return ISO
         }
+    }
+
+    const update = () => {
+        updateScheduledPlanting(chosenSchedule)
+        .then(() => {
+            setChosenSchedule({})
+        }).then(() => {
+            scheduleEditDialog.current.close()
+            console.log(chosenSchedule)
+        })
+
     }
 
     return (
@@ -163,7 +177,7 @@ export const ScheduleList = (props) => {
                     <fieldset>
                     <div className="form-group">
                         <label htmlFor="cropId">Crop: </label>
-                        <select name="cropId" className="form-control" id="schedulCrop"
+                        <select name="cropId" className="form-control" id="scheduleCrop"
                             proptype="int"
                             value={chosenSchedule.cropId}
                             onChange={handleControlledInputChange}>
@@ -192,9 +206,7 @@ export const ScheduleList = (props) => {
                 <button type="submit" id="scheduleEditButton"
                     onClick={evt => {
                         evt.preventDefault()
-                        updateScheduledPlanting(chosenSchedule)
-                        setChosenSchedule({})
-                        scheduleEditDialog.current.close()
+                        update()
                     }}
                     className="btn btn-primary">
                     Save Updates

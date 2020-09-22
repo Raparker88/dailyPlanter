@@ -11,6 +11,8 @@ export const LogList = (props) => {
     const [plantingsObj, setPlantingsObj] = useState({})
     const [harvestsObj, setHarvestsObj] = useState({})
     const [filteredLogs, setFilteredLogs] = useState([])
+    const [plantingClass, setPlantingClass] = useState("logList")
+    const [harvestClass, setHarvestClass] = useState("logHidden")
     
 
     useEffect(() => {
@@ -94,14 +96,17 @@ export const LogList = (props) => {
                             const crop = crops.find(c => c.id === o.cropId) || {}
                             return (
                                 <div key={o.id} className="logPlantingCard">
-                                <p className="cropName"><b>{crop.name}:</b></p>
-                                <p>{o.notes}</p>
-                                <button onClick={()=> {
-                                    props.history.push(`/log/edit/${o.id}`)
-                                }}>Edit</button>
-                                <button onClick={()=> {
-                                    deleteLog(o.id)
-                                }}>Delete</button>
+                                <h4 className="logCropName"><b>{crop.name}</b></h4>
+                                <p className="logNotes">{o.notes}</p>
+                                <div className="editDelete">
+                                    <button onClick={()=> {
+                                        props.history.push(`/log/edit/${o.id}`)
+                                    }}>Edit</button>
+                                    <button onClick={()=> {
+                                        deleteLog(o.id)
+                                    }}>Delete</button>
+                                    </div>
+
                                 </div>
                                 
                             )
@@ -119,17 +124,19 @@ export const LogList = (props) => {
                             const crop = crops.find(c => c.id === o.cropId) || {}
                             return (
                                 <div key={o.id} className="logPlantingCard">
-                                <p className="cropName"><b>{crop.name}:</b></p>
-                                <p>{o.notes}</p>
-                                <label htmlFor="success">Successful</label>
-                                <input type="checkbox" id={o.id} name="success" checked={o.success}
-                                    onChange={handleCheckbox}></input>
-                                <button onClick={()=> {
-                                    props.history.push(`/log/edit/${o.id}`)
-                                }}>Edit</button>
-                                <button onClick={()=> {
-                                    deleteLog(o.id)
-                                 }}>Delete</button>
+                                <h4 className="logCropName"><b>{crop.name}</b></h4>
+                                <p className="logNotes">{o.notes}</p>
+                                    <label htmlFor="success">Successful</label>
+                                    <input  type="checkbox" id={o.id} name="success" checked={o.success}
+                                        onChange={handleCheckbox}></input>
+                                <div className="editDelete">
+                                    <button onClick={()=> {
+                                        props.history.push(`/log/edit/${o.id}`)
+                                    }}>Edit</button>
+                                    <button onClick={()=> {
+                                        deleteLog(o.id)
+                                    }}>Delete</button>
+                                </div>
                     
                                 </div>
                                 
@@ -159,14 +166,28 @@ export const LogList = (props) => {
     return (
         <>
         <CropSearch/>
+        <div className="logButtons">
+            <button onClick={()=> {
+                setPlantingClass("logList")
+                setHarvestClass("logHidden")
+            }}>Show Logged Plantings</button>
+            <button onClick={()=> {
+                setPlantingClass("logHidden")
+                setHarvestClass("logList")
+            }}>Show Logged Harvests</button>
+        </div>
         <div className="logListContainer">
-            <section className="loggedPlantingsList">
+            <section className={plantingClass}>
                 <h2>Plantings</h2>
-                {iterateObject(plantingsObj, "planting")}
+                <div className="flexLogs">
+                    {iterateObject(plantingsObj, "planting")}
+                </div>
             </section>
-            <section className="loggedHarvestsList">
+            <section className={harvestClass}>
                 <h2>Harvests</h2>
-                {iterateObject(harvestsObj, "harvest")}
+                <div className="flexLogs">
+                    {iterateObject(harvestsObj, "harvest")}
+                </div>
             </section>
 
         </div>
