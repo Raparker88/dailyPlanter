@@ -4,7 +4,6 @@ import { ScheduledPlantingsContext } from "./ScheduleProvider"
 import { CropContext } from "../crops/CropProvider"
 import {CropSearch} from "./ScheduleSearch"
 import "./Schedule.css"
-import { getAllByPlaceholderText } from "@testing-library/react"
 
 export const ScheduleList = (props) => {
     const { scheduledPlantings, getScheduledPlantings, updateScheduledPlanting, deleteScheduledPlanting } = useContext(ScheduledPlantingsContext)
@@ -13,25 +12,26 @@ export const ScheduleList = (props) => {
     const [futureSchedule, setFutureSchedule] = useState({})
     const [pastSchedule, setPastSchedule] = useState({})
     const [chosenSchedule, setChosenSchedule] = useState({})
-    const [userCrops, setUserCrops] = useState([])
     const [filteredSchedule, setFilteredSchedule] = useState([])
+    const [userCrops, setUserCrops] = useState([])
+    const [futurePlantingsClass, setFutureClass] = useState("")
+    const [pastPlantingsClass, setPastClass] = useState("")
 
     const scheduleEditDialog = useRef()
 
     useEffect(() => {
         getCrops()
         getScheduledPlantings()
+        setFutureClass("futurePlantings--container")
+        setPastClass("schedule--hidden")
     } ,[])
     
-    // useEffect(() => {
-    //     const filteredCrops = crops.filter(c => c.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
-    //     setUserCrops(filteredCrops)
-    // },[crops])
 
     useEffect(() => {
         const userSchedule = scheduledPlantings.filter(p => p.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
+        setUserCrops(userCrops)
         if (scheduleSearchTerms !== "") {
-            const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
             const subset = userCrops.filter(crop => crop.name.toLowerCase().includes(scheduleSearchTerms.toLowerCase())) || []
             let scheduleSubset=[]
             subset.forEach(crop => {
@@ -99,8 +99,8 @@ export const ScheduleList = (props) => {
                         const crop = crops.find(c => c.id === o.cropId) || {}
                         return (
                             <div key={o.id} className="plantingCard">
-                            <p className="cropName"><b>{crop.name}:</b></p>
-                            <p>{o.notes}</p>
+                            <h4 className="cropName"><b>{crop.name}</b></h4>
+                            <p className="scheduleNotes">{o.notes}</p>
                             <button onClick={()=> {
                                 setChosenSchedule(o)
                                     scheduleEditDialog.current.showModal()
@@ -136,6 +136,16 @@ export const ScheduleList = (props) => {
     return (
         <>
         <CropSearch/>
+        <div className="buttonContainer">
+            <button onClick={()=> {
+                setFutureClass("futurePlantings--container")
+                setPastClass("schedule--hidden")
+            }}>Show Future Planting Schedules</button>
+            <button onClick={()=> {
+                setFutureClass("schedule--hidden")
+                setPastClass("pastPlantings--container")
+            }}>Show Past Planting Schedules</button>
+        </div>
         <div className="scheduleListContainer">
             <dialog className="dialog dialog--scheduleEdit" ref={scheduleEditDialog}>
                 <form>
@@ -191,13 +201,17 @@ export const ScheduleList = (props) => {
                 </button>
                 <button className="button--close" onClick={e => scheduleEditDialog.current.close()}>Close</button>
             </dialog>
-            <section className="futurePlantings--container">
+            <section className={futurePlantingsClass}>
                 <h2>Future</h2>
-                {iterateObject(futureSchedule)}
+                <div className="scheduleFlex">
+                    {iterateObject(futureSchedule)}
+                </div>
             </section>
-            <section className="pastPlantings--container">
+            <section className={pastPlantingsClass}>
                 <h2>Past</h2>
-                {iterateObject(pastSchedule)}
+                <div className="scheduleFlex">
+                    {iterateObject(pastSchedule)}
+                </div>
             </section>
 
         </div>
