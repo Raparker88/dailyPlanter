@@ -28,6 +28,9 @@ p {
   /* margin-bottom: 1.5em; */
   color: rgb(4, 31, 4);
 }
+.form-group{
+  text-align: start;
+}
 
 strong {
   font-weight: bold;
