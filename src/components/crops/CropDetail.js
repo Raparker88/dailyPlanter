@@ -36,19 +36,26 @@ export const CropDetails = (props) => {
                     <p className="detailNote">{crop.genNotes}</p>
                 </div>
             </section>
-            <button onClick={
-                ()=> {
-                    deleteCrop(crop.id)
-                        .then(()=> {
-                            props.history.push("/crops")
-                        })
-                }
-            }>
-                Delete Crop
-            </button>
-            <button onClick={()=> {
-                props.history.push(`/crops/edit/${crop.id}`)
-            }}>Edit</button>
+            <div className="editDeleteContainer">
+                <button 
+                    className="submitButton cropDetailDelete"
+                    onClick={
+                    ()=> {
+                        deleteCrop(crop.id)
+                            .then(()=> {
+                                props.history.push("/crops")
+                            })
+                    }
+                }>
+                    Delete Crop
+                </button>
+                <button 
+                    className="submitButton cropDetailEdit"
+                    onClick={()=> {
+                    props.history.push(`/crops/edit/${crop.id}`)
+                }}>Edit</button>
+
+            </div>
         </div>
         </>
     )

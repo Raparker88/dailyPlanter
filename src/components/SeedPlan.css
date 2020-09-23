@@ -25,9 +25,11 @@ h6 {
 }
 
 p {
-  margin-bottom: 1.5em;
-  color: #d6fcff;
-  color: darkslateblue;
+  /* margin-bottom: 1.5em; */
+  color: rgb(4, 31, 4);
+}
+.form-group{
+  text-align: start;
 }
 
 strong {
@@ -36,4 +38,59 @@ strong {
 
 address {
   margin: 0 0 1.5em;
+}
+.showButton {
+  color: rgb(141, 106, 17);
+  border:  rgb(141, 106, 17) 1px solid;
+  background-color: white;
+  margin: 5px;
+  transition-duration: 0.6s;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 16px;
+  
+}
+.showButton:hover {
+  color: white;
+  background-color:  rgb(141, 106, 17);
+  border: none;
+}
+
+.editDelete{
+  border: none;
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 7px;
+  font-size: 15px;
+}
+.editDelete:hover {
+  background-color: rgb(172, 144, 76);
+  color: white;
+}
+.archiveButton{
+  background-color: rgb(59, 59, 59);
+  color: white;
+  border: none;
+  transition-duration: 0.6s;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 16px;
+}
+.archiveButton:hover {
+  background-color: rgb(141, 106, 17);
+  color: white;
+}
+.submitButton{
+  background-color:  rgb(141, 106, 17);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.submitButton:hover {
+  background-color: rgb(172, 144, 76);
+  color: white;
 }

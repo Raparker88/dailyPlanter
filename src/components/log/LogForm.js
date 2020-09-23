@@ -66,10 +66,12 @@ export const LogForm = (props) => {
                 newLogObject.success = true
                 addLog(newLogObject)
                 .then(() => {
+                    setLog({})
                     document.getElementById("date").value=""
                     document.getElementById("notes").value=""
                     document.getElementById("crop").value="0"
                     const newLog = Object.assign({}, log)
+                    newLog.cropId="0"
                     newLog.type = ""
                     setLog(newLog)
                 })
@@ -77,10 +79,12 @@ export const LogForm = (props) => {
                 newLogObject.success = false
                 addLog(newLogObject)
                 .then(() => {
+                    setLog({})
                     document.getElementById("date").value=""
                     document.getElementById("notes").value=""
                     document.getElementById("crop").value="0"
                     const newLog = Object.assign({}, log)
+                    newLog.cropId="0"
                     newLog.type = ""
                     setLog(newLog)
                 })
@@ -100,7 +104,7 @@ export const LogForm = (props) => {
                             <input type="date" id="date" name="date" 
                                 proptype="varchar"
                                 placeholder="log date"
-                                defaultValue={log.date}
+                                defaultValue={log.date} 
                                 onChange={handleControlledInputChange}
                             />
                         </div>

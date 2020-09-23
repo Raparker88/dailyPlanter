@@ -20,14 +20,14 @@
 
 .tableContainer {
     width: fit-content;
-    margin: 7em auto 2em;
+    margin: 10em auto 2em;
     background-color: #F0EFE4;
     padding: 2em 4em 4em;
     border-radius: 30px;
 }
 .legend{
     display: flex;
-    width: 30em;
+    width: 40em;
     margin: auto;
 }
 .legendColor{
@@ -37,7 +37,6 @@
 }
 .legendItem{
     display: flex;
-    margin: 3em;
     margin: auto;
     width: 10em;
 }
@@ -51,4 +50,8 @@
 .logTable {
     width: fit-content;
     margin: auto;
+}
+
+.bgItem{
+    width: 8em;
 }

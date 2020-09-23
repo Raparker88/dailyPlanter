@@ -22,7 +22,7 @@
     padding-bottom: 35px;
     padding-top: 35px;
     margin: auto;
-    margin-top: 7em;
+    margin-top: 10em;
      border-radius: 30px;
     
 }
@@ -56,22 +56,15 @@
     width: fit-content;
     margin: auto;
 }
-
-.flexLogs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
+.flexLogs{
+    /* text-align: center; */
+    width: 70em;
+    
 }
 .logDateGroup {
-    background-color: #F0EFE4;
-    padding: 10px;
-    margin: 5px;
-    flex-basis: 12%;
-    text-align: center;
-    min-width: 15em;
-    height:fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
 }
 
 .logList {
@@ -79,9 +72,12 @@
 }
 
 .logPlantingCard{
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px;
+    text-align: center;
     border-top: .5px solid white;
+    width: 15em;
+    background-color: #F0EFE4;
+    margin: 5px;
 }
 .logCropName{
     margin: 0;
@@ -92,6 +88,11 @@
 
 .editDelete{
     margin-top: 10px
+}
+.typeTitle{
+    width: 40em;
+    border-bottom: 1px solid;
+    margin: auto;
 }
 
 .archiveButton{
