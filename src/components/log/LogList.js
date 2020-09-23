@@ -90,45 +90,15 @@ export const LogList = (props) => {
         if (type === "harvest"){
             return keys.map(key => {
                 return (
+                    <>
+                    <h3>{key}</h3>
                     <div className="logDateGroup" key={obj[key][0].id}>
-                        <h3>{key}</h3>
                         {obj[key].map(o => {
                             const crop = crops.find(c => c.id === o.cropId) || {}
                             return (
                                 <div key={o.id} className="logPlantingCard">
                                 <h4 className="logCropName"><b>{crop.name}</b></h4>
                                 <p className="logNotes">{o.notes}</p>
-                                <div className="editDelete">
-                                    <button onClick={()=> {
-                                        props.history.push(`/log/edit/${o.id}`)
-                                    }}>Edit</button>
-                                    <button onClick={()=> {
-                                        deleteLog(o.id)
-                                    }}>Delete</button>
-                                    </div>
-
-                                </div>
-                                
-                            )
-                        })}
-                    </div>
-                )
-    
-            })
-        }else{
-            return keys.map(key => {
-                return (
-                    <div className="logDateGroup" key={obj[key][0].id}>
-                        <h3>{key}</h3>
-                        {obj[key].map(o => {
-                            const crop = crops.find(c => c.id === o.cropId) || {}
-                            return (
-                                <div key={o.id} className="logPlantingCard">
-                                <h4 className="logCropName"><b>{crop.name}</b></h4>
-                                <p className="logNotes">{o.notes}</p>
-                                    <label htmlFor="success">Successful</label>
-                                    <input  type="checkbox" id={o.id} name="success" checked={o.success}
-                                        onChange={handleCheckbox}></input>
                                 <div className="editDeleteDiv">
                                     <button 
                                         className="editDelete"
@@ -140,13 +110,52 @@ export const LogList = (props) => {
                                         onClick={()=> {
                                         deleteLog(o.id)
                                     }}>Delete</button>
-                                </div>
-                    
+                                    </div>
+
                                 </div>
                                 
                             )
                         })}
                     </div>
+                    </>
+                )
+    
+            })
+        }else{
+            return keys.map(key => {
+                return (
+                    <>
+                        <h3>{key}</h3>
+                        <div className="logDateGroup" key={obj[key][0].id}>
+                            {obj[key].map(o => {
+                                const crop = crops.find(c => c.id === o.cropId) || {}
+                                return (
+                                    <div key={o.id} className="logPlantingCard">
+                                    <h4 className="logCropName"><b>{crop.name}</b></h4>
+                                    <p className="logNotes">{o.notes}</p>
+                                        <label htmlFor="success">Successful</label>
+                                        <input  type="checkbox" id={o.id} name="success" checked={o.success}
+                                            onChange={handleCheckbox}></input>
+                                    <div className="editDeleteDiv">
+                                        <button 
+                                            className="editDelete"
+                                            onClick={()=> {
+                                            props.history.push(`/log/edit/${o.id}`)
+                                        }}>Edit</button>
+                                        <button 
+                                            className="editDelete"
+                                            onClick={()=> {
+                                            deleteLog(o.id)
+                                        }}>Delete</button>
+                                    </div>
+                        
+                                    </div>
+                                    
+                                )
+                            })}
+
+                        </div>
+                    </>
                 )
     
             })
@@ -186,13 +195,13 @@ export const LogList = (props) => {
         </div>
         <div className="logListContainer">
             <section className={plantingClass}>
-                <h2>Plantings</h2>
+                <h2 className="typeTitle">Plantings</h2>
                 <div className="flexLogs">
                     {iterateObject(plantingsObj, "planting")}
                 </div>
             </section>
             <section className={harvestClass}>
-                <h2>Harvests</h2>
+                <h2 className="typeTitle">Harvests</h2>
                 <div className="flexLogs">
                     {iterateObject(harvestsObj, "harvest")}
                 </div>

@@ -28,6 +28,7 @@
     padding-top: 35px;
     border-radius: 30px; 
     margin: 40px;
+
 }
 
 .formContainer {
@@ -129,33 +130,5 @@ td {
     margin-bottom: 50px;
 }
 
-.showButton {
-    color: rgb(141, 106, 17);
-    border:  rgb(141, 106, 17) 1px solid;
-    background-color: white;
-    margin: 5px;
-    transition-duration: 0.6s;
-    cursor: pointer;
-    padding: 15px;
-    font-size: 16px;
-    
-}
-.showButton:hover {
-    color: white;
-    background-color:  rgb(141, 106, 17);
-    border: none;
-}
 
-.editDelete{
-    border: none;
-    color: black;
-    text-decoration: underline;
-    cursor: pointer;
-    padding: 7px;
-    font-size: 15px;
-}
-.editDelete:hover {
-    background-color: rgb(172, 144, 76);
-    color: white;
-}
 

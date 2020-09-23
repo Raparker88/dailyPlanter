@@ -133,7 +133,7 @@ export const SeedScheduleForm = (props) => {
                     constructPlantings()
                 }}
                 className="btn btn-primary submitButton">
-                    Schedule
+                    Submit Schedule
                 </button>
         </form>
         <button

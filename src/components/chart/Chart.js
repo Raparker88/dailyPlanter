@@ -71,6 +71,10 @@ export const Chart = (props) => {
                     <h4>Harvests</h4>
                     <div className="blue legendColor"></div>
                 </div>
+                <div className="legendItem bgItem">
+                    <h4>Both</h4>
+                    <div className="blueGreen legendColor"></div>
+                </div>
 
             </div>
             <table className="logTable">

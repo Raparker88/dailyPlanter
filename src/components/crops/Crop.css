@@ -15,10 +15,12 @@
     max-width: 10em;
     background-color: #F0EFE4;
     text-align: center;
+    transition-duration: .6s;
 }
 .cropContainer:hover {
     cursor: pointer;
-    background-color: rgb(147, 177, 147);
+    background-color: rgb(4, 39, 4);
+    color: white;
 }
 
 h2 {
@@ -34,16 +36,29 @@ h2 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
+    text-align: center;
+}
+.cropDetailContainer {
+    background-color: #F0EFE4;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    padding: 2em;
+    margin-top: 10em;
+    border-radius: 30px;
+}
+.editDeleteContainer {
+    width: fit-content;
+    margin: auto;
 }
 
 .detail {
     flex-basis: 25%;
-    margin: 2em;
+    padding: 2em;
+    border-right: 1px solid white;
 }
 
-.cropDetailContainer {
-    margin-top: 7em;
-}
 
 .cropForm {
     background-color: #F0EFE4;
@@ -62,16 +77,16 @@ h2 {
 .buttonDiv {
     text-align: center;
 }
-.submitButton{
-    background-color:  rgb(141, 106, 17);
-    color: white;
+
+
+.cropDetailEdit{
+    margin: 5px;
+}
+.cropDetailDelete{
+    margin: 5px;
+}
+
+.crop__general{
     border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 5px;
 }
-.submitButton:hover {
-    background-color: rgb(172, 144, 76);
-    color: white;
-}
+
