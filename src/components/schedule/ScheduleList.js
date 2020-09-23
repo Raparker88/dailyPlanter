@@ -140,16 +140,12 @@ export const ScheduleList = (props) => {
         }
     }
 
-    const update = () => {
-        updateScheduledPlanting(chosenSchedule)
-        .then(() => {
-            setChosenSchedule({})
-        }).then(() => {
-            scheduleEditDialog.current.close()
-            console.log(chosenSchedule)
-        })
-
-    }
+    // const update = () => {
+    //     chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
+    //     updateScheduledPlanting(chosenSchedule)
+    //     scheduleEditDialog.current.close()
+        
+    // }
 
     return (
         <>
@@ -187,7 +183,7 @@ export const ScheduleList = (props) => {
                         <label htmlFor="cropId">Crop: </label>
                         <select name="cropId" className="form-control" id="scheduleCrop"
                             proptype="int"
-                            value={chosenSchedule.cropId}
+                            value={parseInt(chosenSchedule.cropId)}
                             onChange={handleControlledInputChange}>
 
                             <option value="0">Select a crop</option>
@@ -205,7 +201,7 @@ export const ScheduleList = (props) => {
                         <textarea type="text" name="notes" required className="form-control" id="scheduleNotes"
                             proptype="varchar"
                             placeholder="notes"
-                            defaultValue={chosenSchedule.notes}
+                            value={chosenSchedule.notes}
                             onChange={handleControlledInputChange}>
                         </textarea>
                     </div>
@@ -214,7 +210,9 @@ export const ScheduleList = (props) => {
                 <button type="submit" id="scheduleEditButton"
                     onClick={evt => {
                         evt.preventDefault()
-                        update()
+                        chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
+                        updateScheduledPlanting(chosenSchedule)
+                        scheduleEditDialog.current.close()
                     }}
                     className="btn btn-primary">
                     Save Updates
