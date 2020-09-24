@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CropContext } from "./CropProvider"
+import {ImageUpload} from "./CropImages"
 import "./Crop.css"
 
 export const CropDetails = (props) => {
@@ -56,6 +57,9 @@ export const CropDetails = (props) => {
                 }}>Edit</button>
 
             </div>
+        </div>
+        <div className="imageUploadContainer">
+            <ImageUpload {...props}/>
         </div>
         </>
     )
