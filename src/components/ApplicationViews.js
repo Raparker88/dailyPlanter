@@ -19,6 +19,7 @@ import { TaskList } from "./home/TaskList"
 import { ScheduleList } from "./schedule/ScheduleList"
 import { Chart } from "./chart/Chart"
 import { CropImageProvider } from "./crops/ImageProvider"
+import { ImageList } from "./crops/ImageList"
 
 export const ApplicationViews = (props) => {
     return (
@@ -84,7 +85,8 @@ export const ApplicationViews = (props) => {
                         props => <CropForm {...props}/>
                     }/>
                     <Route path="/crops/:cropId(\d+)" render={
-                        props => <CropDetails {...props} />
+                        props => 
+                        <CropDetails {...props}/> 
                     }/>
                     <Route path="/crops/edit/:cropId(\d+)" render={
                             props => <CropForm {...props} />

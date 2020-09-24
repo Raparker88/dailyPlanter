@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState, useRef } from "react"
 import { CropContext } from "./CropProvider"
 import {ImageUpload} from "./CropImages"
 import {ImageList} from "./ImageList"
+import {CropImageContext} from "./ImageProvider"
 import "./Crop.css"
 
 export const CropDetails = (props) => {
     const { deleteCrop, getCropById } = useContext(CropContext)
+    const {images, getImages} = useContext(CropImageContext)
+    const [cropImages, setImages] = useState([])
 
     const [crop, setCrop] = useState({})
 
@@ -16,6 +19,16 @@ export const CropDetails = (props) => {
         getCropById(cropId)
             .then(setCrop)
     }, [])
+    useEffect(() => {
+        getImages()
+    },[])
+
+    useEffect(() => {
+        const cropId = parseInt(props.match.params.cropId)
+        const cImages = images.filter(i => i.cropId === cropId) || []
+        setImages(cImages)
+    },[images])
+
 
     return (
         <>
@@ -76,8 +89,16 @@ export const CropDetails = (props) => {
                 }}>Close</button>
 
         </dialog>
-        <div className="imageFlexContainer">
-            <ImageList props={props}/>
+        <div className="imageFlex">
+            {cropImages.map(i => {
+                return (
+                    <div className="image" key={i.id}>
+                        <img src={i.imageURL} className="image"></img>
+                        <div className="imageContent"><p>{i.label}</p></div>
+                    </div>
+                )
+            })}
+
         </div>
         </>
     )
