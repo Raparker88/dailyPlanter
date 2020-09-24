@@ -90,3 +90,9 @@ h2 {
     border: none;
 }
 
+.showImageDialog{
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+}
+

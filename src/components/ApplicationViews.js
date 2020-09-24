@@ -18,6 +18,7 @@ import { WeatherProvider } from "./externals/WeatherProvider"
 import { TaskList } from "./home/TaskList"
 import { ScheduleList } from "./schedule/ScheduleList"
 import { Chart } from "./chart/Chart"
+import { CropImageProvider } from "./crops/ImageProvider"
 
 export const ApplicationViews = (props) => {
     return (
@@ -72,21 +73,23 @@ export const ApplicationViews = (props) => {
                 </CropProvider>
             </ScheduledPlantingsProvider>
             <CropProvider>
-                <Route exact path="/crops" render={
-                    props => <>
-                        <CropSearch/>
-                        <CropList {...props}/>
-                    </>
-                }/>
-                <Route path="/crops/create" render={
-                    props => <CropForm {...props}/>
-                }/>
-                <Route path="/crops/:cropId(\d+)" render={
-                    props => <CropDetails {...props} />
-                }/>
-                <Route path="/crops/edit/:cropId(\d+)" render={
-                        props => <CropForm {...props} />
-                } />
+                <CropImageProvider>
+                    <Route exact path="/crops" render={
+                        props => <>
+                            <CropSearch/>
+                            <CropList {...props}/>
+                        </>
+                    }/>
+                    <Route path="/crops/create" render={
+                        props => <CropForm {...props}/>
+                    }/>
+                    <Route path="/crops/:cropId(\d+)" render={
+                        props => <CropDetails {...props} />
+                    }/>
+                    <Route path="/crops/edit/:cropId(\d+)" render={
+                            props => <CropForm {...props} />
+                    } />
+                </CropImageProvider>
             </CropProvider>
             <LogProvider>
                 <CropProvider>

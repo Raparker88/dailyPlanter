@@ -17,7 +17,7 @@ export const ScheduleList = (props) => {
     const [futurePlantingsClass, setFutureClass] = useState("")
     const [pastPlantingsClass, setPastClass] = useState("")
 
-    const scheduleEditDialog = useRef()
+    const scheduleEditDialog = useRef(null)
 
     useEffect(() => {
         getCrops()
@@ -142,12 +142,6 @@ export const ScheduleList = (props) => {
         }
     }
 
-    // const update = () => {
-    //     chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
-    //     updateScheduledPlanting(chosenSchedule)
-    //     scheduleEditDialog.current.close()
-        
-    // }
 
     return (
         <>

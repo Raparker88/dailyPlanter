@@ -1,12 +1,12 @@
 import React, {useState, useRef, useContext} from 'react';
 import {CropImageContext} from "./ImageProvider"
-// import "/Crop.css"
+import "./Crop.css"
 
-export const ImageUpload = () => {
+export const ImageUpload = ({crop}) => {
     const [image, setImage] = useState('')
     const[loading, setLoading] = useState(false)
 
-    const{addImage} = useContext(CropImageContext)
+    const {addImage} = useContext(CropImageContext)
 
     const label= useRef(null)
 
@@ -31,15 +31,20 @@ export const ImageUpload = () => {
 
     const constructNewImage = () => {
         const newImage = {
-            cropId: parseInt(props.match.params.cropId),
+            cropId: crop.id,
             imageURL: image,
             label: label.current.value
         }
+        addImage(newImage)
+        .then(() => {
+            document.getElementById("imageForm").reset()
+            setImage('')
+        })
     }
 
     return (
         <>
-        <form className="imageForm">
+        <form id="imageForm">
             <h2>Choose an Image</h2>
             <input type="file" name="file" 
             placeholder="Upload and image"
@@ -47,7 +52,7 @@ export const ImageUpload = () => {
             {loading ? (
                 <h3>Loading...</h3>
             ):(
-                <img src={image} style={{width: '300px'}}/>
+                <img src={image} style={{width: '200px'}}/>
             )
             }
             <fieldset>
@@ -61,8 +66,8 @@ export const ImageUpload = () => {
                     evt.preventDefault() 
                     constructNewImage()
                 }}
-                className="btn btn-primary">
-                Save Employee
+                className="submitButton btn btn-primary">
+                Save Image
             </button>
         </form>
         </>

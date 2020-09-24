@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, useRef } from "react"
 import { CropContext } from "./CropProvider"
 import {ImageUpload} from "./CropImages"
+import {ImageList} from "./ImageList"
 import "./Crop.css"
 
 export const CropDetails = (props) => {
     const { deleteCrop, getCropById } = useContext(CropContext)
 
     const [crop, setCrop] = useState({})
+
+    const imageDialog = useRef(null)
 
     useEffect(() => {
         const cropId = parseInt(props.match.params.cropId)
@@ -57,9 +60,24 @@ export const CropDetails = (props) => {
                 }}>Edit</button>
 
             </div>
+
         </div>
-        <div className="imageUploadContainer">
-            <ImageUpload {...props}/>
+            <button 
+                    className="archiveButton showImageDialog"
+                    onClick={()=> {
+                    imageDialog.current.showModal()
+                }}>Upload Images</button>
+        <dialog className="imageDialog" ref={imageDialog}>
+            <ImageUpload crop={crop}/>
+            <button 
+                    className="submitButton closeDialog"
+                    onClick={()=> {
+                    imageDialog.current.close()
+                }}>Close</button>
+
+        </dialog>
+        <div className="imageFlexContainer">
+            <ImageList props={props}/>
         </div>
         </>
     )
