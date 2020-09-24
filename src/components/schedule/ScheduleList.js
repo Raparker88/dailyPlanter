@@ -51,7 +51,7 @@ export const ScheduleList = (props) => {
 
     useEffect(() => {
         const future = filteredSchedule.filter(p => {
-            if(p.date >= Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user"))){
+            if(p.date >= Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user")) || new Date(p.date).toDateString() === new Date(Date.now()).toDateString()){
                 return true
             }
         }) || []
@@ -60,7 +60,7 @@ export const ScheduleList = (props) => {
         createDateObject(sortedFuture, "future")
 
         const past = filteredSchedule.filter(p => {
-            if(p.date < Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user"))){
+            if(p.date < Date.now() && p.userId === parseInt(localStorage.getItem("seedPlan_user")) && new Date(p.date).toDateString() !== new Date(Date.now()).toDateString()){
                 return true
             }
         }) || []
@@ -93,8 +93,9 @@ export const ScheduleList = (props) => {
         const keys = Object.keys(obj)
         return keys.map(key => {
             return (
+                <>
+                <h3>{key}</h3>
                 <div className="dateGroup" key={obj[key][0].id}>
-                    <h3>{key}</h3>
                     {obj[key].map(o => {
                         const crop = crops.find(c => c.id === o.cropId) || {}
                         return (
@@ -120,6 +121,7 @@ export const ScheduleList = (props) => {
                         )
                     })}
                 </div>
+                </>
             )
 
         })
@@ -220,13 +222,13 @@ export const ScheduleList = (props) => {
                 <button className="button--close" onClick={e => scheduleEditDialog.current.close()}>Close</button>
             </dialog>
             <section className={futurePlantingsClass}>
-                <h2>Future</h2>
+                <h2 className="typeTitle">Future</h2>
                 <div className="scheduleFlex">
                     {iterateObject(futureSchedule)}
                 </div>
             </section>
             <section className={pastPlantingsClass}>
-                <h2>Past</h2>
+                <h2 className="typeTitle">Past</h2>
                 <div className="scheduleFlex">
                     {iterateObject(pastSchedule)}
                 </div>

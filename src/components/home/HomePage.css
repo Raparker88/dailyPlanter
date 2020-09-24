@@ -31,7 +31,7 @@
 }
 
 .detailCard--task {
-    min-width: 15em;
+    width: 15em;
     padding-bottom: 1em;
     margin: 5px;
     text-align: center;

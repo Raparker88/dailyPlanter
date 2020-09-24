@@ -66,27 +66,23 @@ aside {
 }
 
 .scheduleFlex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
+    width: 70em;
 }
 
 .dateGroup {
-    background-color: #F0EFE4;
-    padding: 10px;
-    margin: 5px;
-    flex-basis: 12%;
-    text-align: center;
-    min-width: 15em;
-    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
 }
 
 .plantingCard {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px;
+    text-align: center;
     border-top: .5px solid white;
+    width: 15em;
+    background-color: #F0EFE4;
+    margin: 5px;
+    height: fit-content;
 }
 
 .cropName {

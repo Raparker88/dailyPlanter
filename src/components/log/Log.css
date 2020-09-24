@@ -78,6 +78,7 @@
     width: 15em;
     background-color: #F0EFE4;
     margin: 5px;
+    height: fit-content
 }
 .logCropName{
     margin: 0;
