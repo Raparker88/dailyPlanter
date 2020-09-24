@@ -5,16 +5,18 @@ import { ScheduledPlantingsContext } from "./ScheduleProvider"
 export const SeedScheduleForm = (props) => {
     const [selectedCrop, setSelectedCrop] = useState({})
     const [parsedCrops, setParsedCrops] = useState([])
+    const [isDisabled, setAbility] = useState(true)
 
     const { addScheduledPlanting, getScheduledPlantings, scheduledPlantings } = useContext(ScheduledPlantingsContext)
     const { crops, getCrops } = useContext(CropContext)
 
     useEffect(() => {
         getCrops()
-    }, [])
-    useEffect(() => {
         getScheduledPlantings()
+        document.getElementById("interval").disabled = true
+
     }, [])
+   
     
     useEffect (() => {
         const userCrops = crops.filter(crop => crop.userId === parseInt(localStorage.getItem("seedPlan_user"))) || []
@@ -72,6 +74,15 @@ export const SeedScheduleForm = (props) => {
     const weekInMilliseconds = 7 * 24 * 60 * 60 * 1000 
     const intervalArr = [{"2 Weeks": weekInMilliseconds*2},{"3 Weeks": weekInMilliseconds*3},{"4 Weeks": weekInMilliseconds*4}]
 
+    const disableSuccessions = () => {
+        const successionNum = parseInt(successions.current.value)
+        if(successionNum === 0){
+            setAbility(true)
+        }else{
+            setAbility(false)
+
+        }
+    }
     return (
         <div className="scheduleTop">
         <aside></aside>
@@ -101,7 +112,8 @@ export const SeedScheduleForm = (props) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="succession">Number of successions </label>
-                    <select defaultValue="" name="succession" ref={successions} id="succession" className="form-control" >
+                    <select defaultValue="" name="succession" ref={successions} id="succession" className="form-control" 
+                        onChange={()=>disableSuccessions()}>
                         <option value={0}>none</option>
                         {successionArr.map(s => (
                             <option key={s} value={s}>{s}</option>
@@ -111,8 +123,8 @@ export const SeedScheduleForm = (props) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="interval">Interval Between Successions</label>
-                    <select defaultValue="" name="interval" ref={interval} id="interval" className="form-control" >
+                    <label htmlFor="interval" id="interval">Interval Between Successions</label>
+                    <select defaultValue="" name="interval" ref={interval} id="interval" className="form-control" disabled={isDisabled} >
                         <option value={weekInMilliseconds}>1 Week</option>
                         {intervalArr.map(i => (
                             <option key={Object.values(i)[0]} value={Object.values(i)[0]}>{Object.keys(i)[0]}</option>

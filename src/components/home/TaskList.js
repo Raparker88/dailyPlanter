@@ -57,7 +57,7 @@ export const TaskList = (props) => {
         }
     }
     const isOverdue = () => {
-        if (pastSchedule > 0) {
+        if (pastSchedule.length > 0) {
             return (
                 <>
                     <h2>Overdue</h2>
