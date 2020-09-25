@@ -1,4 +1,17 @@
+# Daily Planter
+This app is designed for small farmers who need tools and information pertaining to creating a seeding schedule to be accessible and in one place. Planning out seeding successions is easier and automated so the farmer can plan for continuous harvest throughout the season. The app also allows the user to log plantings and harvests and archives them for the farmer's records as well and uses the data to create a visualization of crops and when they are in season. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installation
+• From Github clone the ssh key using git clone
+• Make sure that json server is downloaded on your machine
+• Create a separate database.json file and run JSON server with ```json-server -p 8088 -w database.json```
+• cd into the base directory of the app and run npm start
+
+## Screenshots
+
+![Home Page](./screenshots/home.png)
 
 ## Available Scripts
 
