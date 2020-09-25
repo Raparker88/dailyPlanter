@@ -33,6 +33,7 @@
 
 .formContainer {
     flex-basis: 50%;
+    justify-self: center;
 }
 aside {
     flex-basis: 25%
@@ -124,6 +125,10 @@ td {
 }
 .tableTwo {
     margin-bottom: 50px;
+}
+.dButton--close {
+    display: block;
+    margin-bottom: 20px;
 }
 
 

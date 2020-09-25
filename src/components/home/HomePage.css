@@ -5,6 +5,7 @@
     margin-bottom: 30em;
     overflow: auto;
     margin-right: auto;
+    flex-basis: 80%
 }
 
 .homeFlex {
@@ -55,8 +56,10 @@
 
 .logo {
     height: fit-content;
+    margin: auto;
     margin-top: 10em;
-    margin-right: auto;
+    /* margin-right: auto;
+    margin-left: 30px; */
 }
 
 

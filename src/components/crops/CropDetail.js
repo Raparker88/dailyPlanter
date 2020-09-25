@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
 import { CropContext } from "./CropProvider"
 import {ImageUpload} from "./CropImages"
-import {ImageList} from "./ImageList"
 import {CropImageContext} from "./ImageProvider"
 import "./Crop.css"
 
@@ -92,7 +91,7 @@ export const CropDetails = (props) => {
         <div className="imageFlex">
             {cropImages.map(i => {
                 return (
-                    <div className="image" key={i.id}>
+                    <div className="imageDiv" key={i.id}>
                         <img src={i.imageURL} className="image"></img>
                         <div className="imageContent"><p>{i.label}</p></div>
                     </div>
