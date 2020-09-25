@@ -11,8 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Screenshots
 
-![Home Page](./screenshots/home.png =250x)
-<img src="/screenshots/home.png" width="200">
+<img src="/screenshots/chart.png">
 
 ## Available Scripts
 
