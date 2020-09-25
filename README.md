@@ -16,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 <img src="/screenshots/home.png">
 Home page: shows scheduled plantings for this week and overdue plantings that have not been marked completed as well as the weather based on the users location.
-
+$~~$
 
 <img src="/screenshots/scheduleForm.png">
 Scedule Form: The user can select a crop and seeding information for that crop will display to the side. A user can schedule multiple plantings at one time by choosing the number of successions and the interval between successions.
