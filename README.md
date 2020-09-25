@@ -21,27 +21,39 @@ Home page: shows scheduled plantings for this week and overdue plantings that ha
 
 
 <img src="/screenshots/scheduleForm.png">
-Scedule Form: The user can select a crop and seeding information for that crop will display to the side. A user can schedule multiple plantings at one time by choosing the number of successions and the interval between successions.
+Scedule Form: The user can select a crop and seeding information for that crop will display to the side. A user can schedule multiple plantings at one time by choosing the number of successions and the interval between successions.<br/>
+<br/>
+<br/>
 
 
 <img src="/screenshots/frostDates.png">
-The frost date tables display below the schedule form so that the user can easily access average frost dates for their area to better plan seeding times. The user can select which weather station they would like to get frost date information from. 
+The frost date tables display below the schedule form so that the user can easily access average frost dates for their area to better plan seeding times. The user can select which weather station they would like to get frost date information from.<br/>
+<br/>
+<br/>
 
 
 <img src="/screenshots/logForm.png">
-Plantings and harvests are logged by the user and saved in the archives where the user can view them.
+Plantings and harvests are logged by the user and saved in the archives where the user can view them.<br/>
+<br/>
+<br/>
 
 
 <img src="/screenshots/cropList.png">
-All of the crops created by the user. Clicking on a crop will bring the user to the crop detail page. 
+All of the crops created by the user. Clicking on a crop will bring the user to the crop detail page.<br/>
+<br/>
+<br/> 
 
 
 <img src="/screenshots/cropDetail.png">
-Crop details: displays all the information input by the user when creating a crop and can be edited or deleted. Pictures can be uploaded to keep a record of varieties of each crop and what they look like or for any purpose the user would want to document with pictures.
+Crop details: displays all the information input by the user when creating a crop and can be edited or deleted. Pictures can be uploaded to keep a record of varieties of each crop and what they look like or for any purpose the user would want to document with pictures.<br/>
+<br/>
+<br/>
 
 
 <img src="/screenshots/chart.png">
-The chart uses data input by the user in the logs to create a visualization of planting and harvest times for each crop so that potential customers know when certain crops are in season. 
+The chart uses data input by the user in the logs to create a visualization of planting and harvest times for each crop so that potential customers know when certain crops are in season. <br/>
+<br/>
+<br/>
 
 ## Available Scripts
 
