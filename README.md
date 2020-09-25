@@ -5,8 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Installation
 • From Github clone the ssh key using git clone
+
 • Make sure that json server is downloaded on your machine
+
 • Create a separate database.json file and run JSON server with ```json-server -p 8088 -w database.json```
+
 • cd into the base directory of the app and run npm start
 
 ## Screenshots
