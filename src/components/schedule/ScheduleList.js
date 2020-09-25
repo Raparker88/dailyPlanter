@@ -17,7 +17,7 @@ export const ScheduleList = (props) => {
     const [futurePlantingsClass, setFutureClass] = useState("")
     const [pastPlantingsClass, setPastClass] = useState("")
 
-    const scheduleEditDialog = useRef()
+    const scheduleEditDialog = useRef(null)
 
     useEffect(() => {
         getCrops()
@@ -142,12 +142,6 @@ export const ScheduleList = (props) => {
         }
     }
 
-    // const update = () => {
-    //     chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
-    //     updateScheduledPlanting(chosenSchedule)
-    //     scheduleEditDialog.current.close()
-        
-    // }
 
     return (
         <>
@@ -209,17 +203,20 @@ export const ScheduleList = (props) => {
                     </div>
                 </fieldset>
                 </form>
-                <button type="submit" id="scheduleEditButton"
-                    onClick={evt => {
-                        evt.preventDefault()
-                        chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
-                        updateScheduledPlanting(chosenSchedule)
-                        scheduleEditDialog.current.close()
-                    }}
-                    className="btn btn-primary">
-                    Save Updates
-                </button>
-                <button className="button--close" onClick={e => scheduleEditDialog.current.close()}>Close</button>
+                <div className="dialogButtons">
+                    <button type="submit" id="scheduleEditButton" 
+                        onClick={evt => {
+                            evt.preventDefault()
+                            chosenSchedule.cropId = parseInt(chosenSchedule.cropId)
+                            updateScheduledPlanting(chosenSchedule)
+                            scheduleEditDialog.current.close()
+                        }}
+                        className="btn btn-primary submitButton">
+                        Save Updates
+                    </button>
+                    <button className="dButton--close submitButton" onClick={e => scheduleEditDialog.current.close()}>Close</button>
+
+                </div>
             </dialog>
             <section className={futurePlantingsClass}>
                 <h2 className="typeTitle">Future</h2>

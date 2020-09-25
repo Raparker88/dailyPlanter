@@ -87,31 +87,34 @@ export const TaskList = (props) => {
 
     return (
         <>
-            <div className="homeContainer">
-                <h2>Scheduled Plantings This Week</h2>
-                <section className="plantings--container">
-                    <div>{isThereAFuture()}</div>
+            <div className="columnFlex">
+                <div className="homeFlex">
+                    <img src={require("./dailyPlanterLogo.png")} className="logo"></img>
+                    <div className="homeContainer">
+                        <h2>Scheduled Plantings This Week</h2>
+                        <section className="plantings--container">
+                            <div>{isThereAFuture()}</div>
 
-                    {futureSchedule.map(fs => {
-                        const crop = crops.find(c => c.id === fs.cropId)
-                        return (
-                            <>
-                                <div key={fs.id} className="detailCard--task">
-                                    <h4>{crop.name}</h4>
-                                    <p>{new Date(fs.date).toDateString()}</p>
-                                    <p>{fs.notes}</p>
-                                    <label htmlFor="complete">Complete</label>
-                                    <input type="checkbox" id={fs.id} name="complete" checked={fs.complete}
-                                        onChange={handleCheckbox}></input>
-                                </div>
-                            </>
-                        )
-                    })}
-                </section>
-                {isOverdue()}
-
+                            {futureSchedule.map(fs => {
+                                const crop = crops.find(c => c.id === fs.cropId)
+                                return (
+                                    <>
+                                        <div key={fs.id} className="detailCard--task">
+                                            <h4>{crop.name}</h4>
+                                            <p>{new Date(fs.date).toDateString()}</p>
+                                            <p>{fs.notes}</p>
+                                            <label htmlFor="complete">Complete</label>
+                                            <input type="checkbox" id={fs.id} name="complete" checked={fs.complete}
+                                                onChange={handleCheckbox}></input>
+                                        </div>
+                                    </>
+                                )
+                            })}
+                        </section>
+                        {isOverdue()}
+                    </div>
+                </div>
                 <WeatherList />
-
             </div>
         </>
     )

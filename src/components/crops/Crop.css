@@ -90,3 +90,25 @@ h2 {
     border: none;
 }
 
+.showImageDialog{
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.imageFlex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5em;
+}
+.imageDiv {
+    width: 20em;
+    margin: 15px;
+    text-align: center;
+    border: .3px solid
+}
+.image {
+    width: 100%;
+}
+
