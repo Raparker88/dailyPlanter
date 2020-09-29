@@ -29,7 +29,7 @@ export const TaskList = (props) => {
         setFutureSchedule(sortedFuture)
 
         const pastOverdue = scheduledPlantings.filter(p => {
-            if (p.date < Date.now() && new Date(p.date).toDateString() != new Date(Date.now()).toDateString() && !p.complete) {
+            if (p.date < Date.now() && new Date(p.date).toDateString() != new Date(Date.now()).toDateString() && !p.complete && p.userId === parseInt(localStorage.getItem("seedPlan_user"))) {
                 return true
             }
         }) || []
