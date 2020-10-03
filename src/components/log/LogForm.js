@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, useRef } from "react"
 import { LogContext } from "./LogProvider"
 import { CropContext } from "../crops/CropProvider"
 
@@ -10,6 +10,7 @@ export const LogForm = (props) => {
     const [userCrops, setUserCrops] = useState([]) 
 
     const editMode = props.match.params.hasOwnProperty("logId")
+    const logFormDialog = useRef(null)
 
     const handleControlledInputChange = (eve) => {
         const newLog = Object.assign({}, log)
@@ -41,60 +42,68 @@ export const LogForm = (props) => {
 
     const constructNewLog = () => {
         const cropId = parseInt(log.cropId)
+        
+        if(log.date && log.type && cropId && log.notes){
 
-        if (editMode) {
-            updateLog({
-                id: log.id,
-                userId: parseInt(localStorage.getItem("seedPlan_user")),
-                notes: log.notes,
-                success: log.success,
-                cropId,
-                date: log.date,
-                type: log.type
-            }).then(() => {
-                props.history.push("/log/archives")
-            })
-        }else{
-            const newLogObject = {
-                userId: parseInt(localStorage.getItem("seedPlan_user")),
-                notes: log.notes,
-                cropId,
-                date: log.date,
-                type: log.type
-            }
-            if(log.type === "harvest"){
-                newLogObject.success = true
-                addLog(newLogObject)
-                .then(() => {
-                    setLog({})
-                    document.getElementById("date").value=""
-                    document.getElementById("notes").value=""
-                    document.getElementById("crop").value="0"
-                    const newLog = Object.assign({}, log)
-                    newLog.cropId="0"
-                    newLog.type = ""
-                    setLog(newLog)
+            if (editMode) {
+                updateLog({
+                    id: log.id,
+                    userId: parseInt(localStorage.getItem("seedPlan_user")),
+                    notes: log.notes,
+                    success: log.success,
+                    cropId,
+                    date: log.date,
+                    type: log.type
+                }).then(() => {
+                    props.history.push("/log/archives")
                 })
             }else{
-                newLogObject.success = false
-                addLog(newLogObject)
-                .then(() => {
-                    setLog({})
-                    document.getElementById("date").value=""
-                    document.getElementById("notes").value=""
-                    document.getElementById("crop").value="0"
-                    const newLog = Object.assign({}, log)
-                    newLog.cropId="0"
-                    newLog.type = ""
-                    setLog(newLog)
-                })
-
+                const newLogObject = {
+                    userId: parseInt(localStorage.getItem("seedPlan_user")),
+                    notes: log.notes,
+                    cropId,
+                    date: log.date,
+                    type: log.type
+                }
+                if(log.type === "harvest"){
+                    newLogObject.success = true
+                    addLog(newLogObject)
+                    .then(() => {
+                        setLog({})
+                        document.getElementById("date").value=""
+                        document.getElementById("notes").value=""
+                        document.getElementById("crop").value="0"
+                        const newLog = Object.assign({}, log)
+                        newLog.cropId="0"
+                        newLog.type = ""
+                        setLog(newLog)
+                    })
+                }else{
+                    newLogObject.success = false
+                    addLog(newLogObject)
+                    .then(() => {
+                        setLog({})
+                        document.getElementById("date").value=""
+                        document.getElementById("notes").value=""
+                        document.getElementById("crop").value="0"
+                        const newLog = Object.assign({}, log)
+                        newLog.cropId="0"
+                        newLog.type = ""
+                        setLog(newLog)
+                    })
+                }
             }
+        }else{
+            logFormDialog.current.showModal()
         }
     }
 
         return (
             <>
+             <dialog className="dialog dialog--logForm" ref={logFormDialog}>
+                <div>Please fill in all fields</div>
+                <button className="button--close submitButton" onClick={e => logFormDialog.current.close()}>Close</button>
+            </dialog>
             <form className="logForm" id="logForm">
                 <h2 className="logForm_title">{editMode ? "Update Log": "Log an Activity"}</h2>
                 <div className="dateRadio">

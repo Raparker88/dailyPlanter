@@ -84,7 +84,7 @@ export const CropForm = (props) => {
         <form className="cropForm">
             <dialog className="dialog dialog--cropForm" ref={cropFormDialog}>
                 <div>Please Fill in all fields</div>
-                <button className="button--close" onClick={e => cropFormDialog.current.close()}>Close</button>
+                <button className="button--close submitButton" onClick={e => cropFormDialog.current.close()}>Close</button>
             </dialog>
             <h2 className="cropForm__title">{editMode ? "Edit Crop" : "Add A New Crop"}</h2>
             <fieldset>

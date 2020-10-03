@@ -22,7 +22,7 @@ export const Login = props => {
             .then(exists => {
                 if (exists && exists.password === password.current.value) {
                     localStorage.setItem("seedPlan_user", exists.id)
-                    props.history.push("/home")
+                    props.history.push("/")
                 } else if (exists && exists.password !== password.current.value) {
                     passwordDialog.current.showModal()
                 } else if (!exists) {
@@ -42,9 +42,8 @@ export const Login = props => {
                 <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
             </dialog>
             <section>
-                <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Daily Planter</h1>
-                    <h2>Please sign in</h2>
+                <form className="form--login loginForm" onSubmit={handleLogin}>
+                    <img src={require("../home/dailyPlanterLogo.png")} className="login-logo"></img>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input ref={email} type="email"
@@ -62,7 +61,7 @@ export const Login = props => {
                             required />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
+                        <button type="submit" className="submitButton">
                             Sign in
                         </button>
                     </fieldset>

@@ -53,14 +53,11 @@ fieldset {
 }
 
 .form--login {
-    background-position-x: right;
-    z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
     background-color: #F0EFE4;
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
     border-radius: 30px;
+    padding-bottom: 10px;
 }
 
 .button--close {
@@ -70,5 +67,9 @@ fieldset {
 
 .dialog {
     min-width: 15rem;
-    min-height: 5rem;
+    min-height: 7rem;
+}
+
+.loginForm{
+    margin-top: 5em;
 }
