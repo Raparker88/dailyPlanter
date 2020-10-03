@@ -28,6 +28,7 @@ export const SeedScheduleForm = (props) => {
     const date = useRef(null)
     const successions = useRef(null)
     const interval = useRef(null)
+    const scheduleFormDialog= useRef(null)
 
     const findCrop = (cropId) => {
         const cropObj = crops.find(crop => crop.id === cropId) || {}
@@ -61,13 +62,17 @@ export const SeedScheduleForm = (props) => {
                 userId: parseInt(localStorage.getItem("seedPlan_user")),
                 complete: false
             }
+        if(cropId && dateInt && newSeeding.notes != null){
 
-        
-        for(let i = 0; i <= successionNum; i++){
-            await addScheduledPlanting(newSeeding)
-            newSeeding.date += parseInt(interval.current.value)
+            for(let i = 0; i <= successionNum; i++){
+                await addScheduledPlanting(newSeeding)
+                newSeeding.date += parseInt(interval.current.value)
+            }
+            document.getElementById("seedScheduleForm").reset()
+        }else{
+            scheduleFormDialog.current.showModal()
         }
-        document.getElementById("seedScheduleForm").reset()
+        
     }
 
     const successionArr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -86,6 +91,10 @@ export const SeedScheduleForm = (props) => {
     return (
         <div className="scheduleTop">
         <aside></aside>
+        <dialog className="dialog dialog--scheduleForm" ref={scheduleFormDialog}>
+                <div>Please fill in all fields</div>
+                <button className="button--close submitButton" onClick={e => scheduleFormDialog.current.close()}>Close</button>
+            </dialog>
         <div className="formContainer">
         <form className="scheduleForm" id="seedScheduleForm">
             <h2>Create Seeding Schedule</h2>

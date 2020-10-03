@@ -7,7 +7,7 @@ import "./Schedule.css"
 
 export const ScheduleList = (props) => {
     const { scheduledPlantings, getScheduledPlantings, updateScheduledPlanting, deleteScheduledPlanting } = useContext(ScheduledPlantingsContext)
-    const { crops, getCrops, scheduleSearchTerms, setScheduleSearchTerms } = useContext(CropContext)
+    const { crops, getCrops, scheduleSearchTerms } = useContext(CropContext)
 
     const [futureSchedule, setFutureSchedule] = useState({})
     const [pastSchedule, setPastSchedule] = useState({})

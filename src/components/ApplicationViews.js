@@ -28,7 +28,7 @@ export const ApplicationViews = (props) => {
                 <WeatherProvider>
                     <ScheduledPlantingsProvider>
                         <CropProvider>
-                            <Route path="/home" render={
+                            <Route exact path="/" render={
                                 props => <>
                                     <TaskList {...props}/>
                                 </>

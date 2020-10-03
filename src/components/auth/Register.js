@@ -43,7 +43,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("seedPlan_user", createdUser.id)
-                                props.history.push("/home")
+                                props.history.push("/")
                             }
                         })
                 })
@@ -127,7 +127,7 @@ export const Register = (props) => {
                         required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit">
+                    <button type="submit" className="submitButton">
                         Sign in
                     </button>
                 </fieldset>
