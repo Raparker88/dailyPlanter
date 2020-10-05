@@ -97,7 +97,7 @@ export const SeedScheduleForm = (props) => {
             </dialog>
         <div className="formContainer">
         <form className="scheduleForm" id="seedScheduleForm">
-            <h2>Create Seeding Schedule</h2>
+            <h2>Create Planting Schedule</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="crop">Crop: </label>
