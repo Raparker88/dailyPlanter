@@ -50,6 +50,7 @@
 .logTable {
     width: fit-content;
     margin: auto;
+    border-collapse: collapse;
 }
 
 .bgItem{

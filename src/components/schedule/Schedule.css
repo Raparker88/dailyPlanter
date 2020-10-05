@@ -52,6 +52,7 @@ aside {
     background-color: #F0EFE4;
     padding: 15px;
     border-radius: 30px;
+   
 }
 .scheduleListContainer {
     margin-top: 7em;
@@ -104,7 +105,7 @@ aside {
     width: 75px;
 }
 td {
-    border-bottom: .5px solid white;
+    border-bottom: 2px solid white;
 }
 .stationContainer{
     display: flex;

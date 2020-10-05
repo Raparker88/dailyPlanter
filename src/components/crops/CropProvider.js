@@ -9,9 +9,22 @@ export const CropProvider = (props) => {
     const [scheduleSearchTerms, setScheduleSearchTerms] = useState("")
     const [logSearchTerms, setLogSearchTerms] = useState("")
 
+    const compare = (a,b) => {
+        const cropA = a.name.toUpperCase()
+        const cropB = b.name.toUpperCase()
+        let comparison = 0
+        if(cropA > cropB){
+            comparison = 1
+        }else if (cropB > cropA){
+            comparison = -1
+        }
+        return comparison
+    }
+
     const getCrops = () => {
         return fetch("http://localhost:8088/crops")
             .then(res => res.json())
+            .then(res => res.sort(compare))
             .then(setCrops)
     }
 
